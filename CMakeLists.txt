@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.14)
-project(optix)
 
-set(CMAKE_CXX_STANDARD 17)
+project(Foundation)
 
-add_executable(optix main.cpp)
+# Options
+option(BUILD_SANDBOX "Build sandbox application" ON)
+
+# Foundation-Engine
+add_subdirectory(Engine)
+
+# Sandbox
+if(BUILD_SANDBOX)
+  add_subdirectory(Sandbox)
+endif()
