@@ -2,7 +2,7 @@ project(Foundation-Sandbox)
 
 # Add sources
 set (SANDBOX_SOURCES
-  src/main.cpp
+  src/Sandbox.cpp
   )
 
 # Define executable

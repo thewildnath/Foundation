@@ -2,9 +2,13 @@ project(Foundation-Engine)
 
 # Add sources
 set (ENGINE_SOURCES
-  src/engine.cpp
-  src/engine.h
-  )
+  src/engine/engine.cpp
+  src/engine/engine.h
+  src/engine/Application.cpp
+  src/engine/Application.h
+  src/Foundation.h
+  src/engine/Core.h
+  src/engine/EntryPoint.h)
 
 # Define library
 add_library(${PROJECT_NAME} SHARED ${ENGINE_SOURCES})
