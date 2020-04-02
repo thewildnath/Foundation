@@ -20,6 +20,10 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/src)
 # Compiler options
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
+# Add include
+add_subdirectory(include/spdlog)
+target_link_libraries(${PROJECT_NAME} spdlog)
+
 ## Build glfw
 #set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 #set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
