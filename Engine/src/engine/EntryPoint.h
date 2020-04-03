@@ -11,9 +11,8 @@ namespace fnd {
 
 int main(int argc, char** argv) {
   fnd::Log::init();
-  FND_ENGINE_WARN("Logger initialised");
-  int a = 5;
-  FND_INFO("Hello! Var={0}", a);
+  FND_E_INFO("Logger initialised");
+
   auto app = fnd::createApplication();
   app->run();
   delete app;

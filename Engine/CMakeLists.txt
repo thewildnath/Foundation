@@ -8,7 +8,13 @@ set (ENGINE_SOURCES
   src/engine/Core.h
   src/engine/EntryPoint.h
   src/engine/Log.cpp
-  src/engine/Log.h)
+  src/engine/Log.h
+  src/engine/Events/Event.h
+  src/engine/Events/KeyEvent.h
+  src/engine/Input/KeyCodes.h
+  src/engine/Input/MouseCodes.h
+  src/engine/Events/MouseEvent.h
+  src/engine/Events/WindowEvents.h)
 
 # Define library
 add_library(${PROJECT_NAME} SHARED ${ENGINE_SOURCES})

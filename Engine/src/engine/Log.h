@@ -22,11 +22,11 @@ namespace fnd {
 }
 
 // Engine log macros
-#define FND_ENGINE_TRACE(...)    ::fnd::Log::getEngineLogger()->trace(__VA_ARGS__)
-#define FND_ENGINE_INFO(...)     ::fnd::Log::getEngineLogger()->info(__VA_ARGS__)
-#define FND_ENGINE_WARN(...)     ::fnd::Log::getEngineLogger()->warn(__VA_ARGS__)
-#define FND_ENGINE_ERROR(...)    ::fnd::Log::getEngineLogger()->error(__VA_ARGS__)
-#define FND_ENGINE_CRITICAL(...) ::fnd::Log::getEngineLogger()->critical(__VA_ARGS__)
+#define FND_E_TRACE(...)    ::fnd::Log::getEngineLogger()->trace(__VA_ARGS__)
+#define FND_E_INFO(...)     ::fnd::Log::getEngineLogger()->info(__VA_ARGS__)
+#define FND_E_WARN(...)     ::fnd::Log::getEngineLogger()->warn(__VA_ARGS__)
+#define FND_E_ERROR(...)    ::fnd::Log::getEngineLogger()->error(__VA_ARGS__)
+#define FND_E_CRITICAL(...) ::fnd::Log::getEngineLogger()->critical(__VA_ARGS__)
 
 // Client log macros
 #define FND_TRACE(...)           ::fnd::Log::getClientLogger()->trace(__VA_ARGS__)
