@@ -1,6 +1,7 @@
 #pragma once
 
 #ifdef _WIN32
+  // Windows.h defines macros for 'min' and 'max'
   #ifdef _WIN64
     #define FND_PLATFORM_WINDOWS64
   #else

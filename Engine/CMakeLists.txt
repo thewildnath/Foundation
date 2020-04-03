@@ -2,13 +2,13 @@ project(Foundation-Engine)
 
 # Add sources
 set (ENGINE_SOURCES
-  src/engine/engine.cpp
-  src/engine/engine.h
   src/engine/Application.cpp
   src/engine/Application.h
   src/Foundation.h
   src/engine/Core.h
-  src/engine/EntryPoint.h)
+  src/engine/EntryPoint.h
+  src/engine/Log.cpp
+  src/engine/Log.h)
 
 # Define library
 add_library(${PROJECT_NAME} SHARED ${ENGINE_SOURCES})
@@ -20,9 +20,11 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/src)
 # Compiler options
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
-# Add include
-add_subdirectory(include/spdlog)
-target_link_libraries(${PROJECT_NAME} spdlog)
+# Build spdlog
+# Include header only version for now, because building yields errors on Windows
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include/spdlog/include)
+#add_subdirectory(include/spdlog)
+#target_link_libraries(${PROJECT_NAME} spdlog)
 
 ## Build glfw
 #set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
