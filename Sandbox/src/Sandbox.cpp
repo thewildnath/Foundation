@@ -1,11 +1,12 @@
 #include <Foundation.h>
 
-class Sandbox : public fnd::Application {
+class SandboxApplication : public fnd::Application {
 public:
-  Sandbox() = default;
-  ~Sandbox() = default;
+  SandboxApplication() = default;
+  ~SandboxApplication() override = default;
 };
 
 fnd::Application* fnd::createApplication() {
-  return new Sandbox();
+  FND_INFO("Calling from sandbox!");
+  return new SandboxApplication();
 }
