@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Foundation/Core.h"
+#include "Core.h"
 
 namespace fnd {
 
@@ -12,5 +12,3 @@ namespace fnd {
   };
 
 }
-
-// TODO: Include spdlog incrementally to check why the dll size increases so much. Also merge into main project

@@ -1,9 +1,8 @@
 #pragma once
 
-#include <cstdint>
-#include <string>
+#include "fndpch.h"
 
-#include "Foundation/Core.h"
+#include "Core.h"
 
 namespace fnd {
 

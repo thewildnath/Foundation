@@ -1,10 +1,8 @@
 #pragma once
 
-#include <memory>
-
 #include <spdlog/spdlog.h>
 
-#include "Foundation/Core.h"
+#include "fndpch.h"
 
 namespace fnd {
 

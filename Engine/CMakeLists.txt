@@ -8,7 +8,9 @@ option(BUILD_SHARED_LIB "Build Foundation::Engine as a shared library" OFF)
 # Add sources
 set(ENGINE_SOURCES
   src/Foundation.h
-  src/Foundation/Core.h
+  src/Core.h
+  src/fndpch.cpp
+  src/fndpch.h
   src/Foundation/EntryPoint.h
   src/Foundation/Application.cpp
   src/Foundation/Application.h
@@ -46,6 +48,9 @@ endif()
 
 # Set include directories
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/src)
+
+# Specify precompiled headers
+target_precompile_headers(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/src/fndpch.h)
 
 # Dependencies
 set(SPDLOG_BUILD_SHARED ON FORCE)

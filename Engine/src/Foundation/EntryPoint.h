@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Foundation/Core.h"
+#include "Core.h"
 
 #include "Foundation/Application.h"
 #include "Foundation/Log.h"
@@ -10,7 +10,7 @@ namespace fnd {
   extern Application* createApplication();
 }
 
-#ifdef FND_PLATFORM_WINDOWS64
+#ifdef FND_PLATFORM_WINDOWS
 
 int main(int argc, char** argv) {
   fnd::Log::init();
