@@ -28,8 +28,8 @@ namespace fnd {
     FND_E_INFO("Creating window: {0} ({1} {2})", data.title, data.width, data.height);
 
     if (glfwWindowCount == 0) {
-      int returnCode = glfwInit();
-
+      int success = glfwInit();
+      FND_E_ASSERT(success == GLFW_TRUE, "Could not initialise GLFW!");
       glfwSetErrorCallback(glfwErrorCallback);
     }
 
@@ -55,8 +55,6 @@ namespace fnd {
   void WindowsWindow::onUpdate() {
     glfwPollEvents();
     glfwSwapBuffers(window);
-
-    FND_E_DEBUG("WindowsWindow onUpdate");
   }
 
   void WindowsWindow::setVSync(bool enabled) {

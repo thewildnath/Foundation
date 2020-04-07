@@ -33,5 +33,28 @@
     #define FND_API
 #endif
 
+// Debug preprocessor directives
+#ifdef FND_DEBUG
+  #define FND_ENABLE_ASSERTIONS
+
+  #ifdef _MSC_VER
+    #define DEBUG_BREAK __debugbreak()
+  #else
+    #warning "Implement DEBUG_BREAK defintion for other compilers"
+    #define DEBUG_BREAK
+  #endif
+#else
+  #define DEBUG_BREAK
+#endif
+
+// Assertions
+#ifdef FND_ENABLE_ASSERTIONS
+  #define FND_E_ASSERT(x, ...) { if (!(x)) { FND_E_ERROR("Assertion failed: {0}", __VA_ARGS__); DEBUG_BREAK; } }
+  #define FND_ASSERT(x, ...) { if (!(x)) { FND_ERROR("Assertion failed: {0}", __VA_ARGS__); DEBUG_BREAK; } }
+#else
+  #define FND_E_ASSERT(x, ...)
+  #define FND_ASSERT(x, ...)
+#endif
+
 // Other useful macros
 #define BIT(x) (1u << x)

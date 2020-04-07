@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.17)
 project(Foundation-Engine)
 
 # Options
-option(BUILD_SHARED_LIB "Build Foundation::Engine as a shared library" OFF)
+option(FND_BUILD_SHARED_LIB "Build Foundation::Engine as a shared library" OFF)
+option(FND_DEBUG "Keep debug preprocessor directives in code" OFF)
 
 # Add sources
 set(ENGINE_SOURCES
@@ -30,7 +31,7 @@ set(ENGINE_SOURCES
 
 ## Circumvent MSVC's need for __declspec(dllimport)
 #set (CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-if(BUILD_SHARED_LIB)
+if(FND_BUILD_SHARED_LIB)
   set(BUILD_MODE "SHARED")
 else()
   set(BUILD_MODE "STATIC")
@@ -45,9 +46,13 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Specify compile definitions
-if(BUILD_SHARED_LIB)
+if(FND_BUILD_SHARED_LIB)
   target_compile_definitions(${PROJECT_NAME} PUBLIC FND_BUILD_SHARED)
   target_compile_definitions(${PROJECT_NAME} PRIVATE FND_EXPORT)
+endif()
+
+if(FND_DEBUG)
+  target_compile_definitions(${PROJECT_NAME} PUBLIC FND_DEBUG)
 endif()
 
 # Set include directories
