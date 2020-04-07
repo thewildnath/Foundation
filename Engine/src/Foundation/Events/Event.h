@@ -1,8 +1,8 @@
 #pragma once
 
-#include "fndpch.h"
+#include "Foundation/fndpch.h"
 
-#include "Core.h"
+#include "Foundation/Core.h"
 
 namespace fnd {
 

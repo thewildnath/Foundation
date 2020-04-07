@@ -1,14 +1,15 @@
 #pragma once
 
-#include "Core.h"
+#include "Foundation/Core.h"
 
-#include "Foundation/Application.h"
+// ------- Entry point -------
+#include "Foundation/Core/EntryPoint.h"
+// ---------------------------
+
+#include "Foundation/Core/Application.h"
+#include "Foundation/Core/Log.h"
+
 #include "Foundation/Events/Event.h"
 #include "Foundation/Events/KeyEvent.h"
 #include "Foundation/Events/MouseEvent.h"
 #include "Foundation/Events/WindowEvents.h"
-#include "Foundation/Log.h"
-
-// ------- Entry point -------
-#include "Foundation/EntryPoint.h"
-// ---------------------------

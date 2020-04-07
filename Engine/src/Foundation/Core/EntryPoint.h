@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Core.h"
+#include "Foundation/Core.h"
 
-#include "Foundation/Application.h"
-#include "Foundation/Log.h"
+#include "Foundation/Core/Application.h"
+#include "Foundation/Core/Log.h"
 
 namespace fnd {
   // To be defined in client

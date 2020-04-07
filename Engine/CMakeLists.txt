@@ -8,20 +8,20 @@ option(BUILD_SHARED_LIB "Build Foundation::Engine as a shared library" OFF)
 # Add sources
 set(ENGINE_SOURCES
   src/Foundation.h
-  src/Core.h
-  src/fndpch.cpp
-  src/fndpch.h
-  src/Foundation/EntryPoint.h
-  src/Foundation/Application.cpp
-  src/Foundation/Application.h
+  src/Foundation/Core.h
+  src/Foundation/fndpch.cpp
+  src/Foundation/fndpch.h
+  src/Foundation/Core/EntryPoint.h
+  src/Foundation/Core/Application.cpp
+  src/Foundation/Core/Application.h
   src/Foundation/Events/Event.h
   src/Foundation/Events/KeyEvent.h
   src/Foundation/Events/MouseEvent.h
   src/Foundation/Events/WindowEvents.h
   src/Foundation/Input/KeyCodes.h
   src/Foundation/Input/MouseCodes.h
-  src/Foundation/Log.cpp
-  src/Foundation/Log.h
+  src/Foundation/Core/Log.cpp
+  src/Foundation/Core/Log.h
   )
 
 ## Circumvent MSVC's need for __declspec(dllimport)

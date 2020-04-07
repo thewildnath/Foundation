@@ -8,7 +8,7 @@
 #include <string>
 
 #include "Core.h"
-#include "Foundation/Log.h"
+#include "Foundation/Core/Log.h"
 
 #ifdef FND_PLATFORM_WINDOWS
   #include <Windows.h>
