@@ -14,14 +14,18 @@ set(ENGINE_SOURCES
   src/Foundation/Core/EntryPoint.h
   src/Foundation/Core/Application.cpp
   src/Foundation/Core/Application.h
+  src/Foundation/Core/Log.cpp
+  src/Foundation/Core/Log.h
+  src/Foundation/Core/Window.cpp
+  src/Foundation/Core/Window.h
   src/Foundation/Events/Event.h
   src/Foundation/Events/KeyEvent.h
   src/Foundation/Events/MouseEvent.h
   src/Foundation/Events/WindowEvents.h
   src/Foundation/Input/KeyCodes.h
   src/Foundation/Input/MouseCodes.h
-  src/Foundation/Core/Log.cpp
-  src/Foundation/Core/Log.h
+  src/Platform/Windows/WindowsWindow.cpp
+  src/Platform/Windows/WindowsWindow.h
   )
 
 ## Circumvent MSVC's need for __declspec(dllimport)
@@ -50,11 +54,13 @@ endif()
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/src)
 
 # Specify precompiled headers
-target_precompile_headers(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/src/fndpch.h)
+target_precompile_headers(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/src/Foundation/fndpch.h)
 
 # Dependencies
 set(SPDLOG_BUILD_SHARED ON FORCE)
 add_subdirectory(include)
 
 #Link libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC spdlog)
+target_link_libraries(${PROJECT_NAME}
+  PUBLIC spdlog
+  PRIVATE glfw)
