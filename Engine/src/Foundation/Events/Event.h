@@ -15,12 +15,12 @@ namespace fnd {
 
   enum class FND_API EventCategory : uint32_t {
     None = 0,
-    Application = BIT(0u),
-    Input       = BIT(1u),
-    Keyboard    = BIT(2u),
-    Mouse       = BIT(3u),
-    MouseButton = BIT(4u),
-    Window      = BIT(5u)
+    Application = FND_BIT(0u),
+    Input       = FND_BIT(1u),
+    Keyboard    = FND_BIT(2u),
+    Mouse       = FND_BIT(3u),
+    MouseButton = FND_BIT(4u),
+    Window      = FND_BIT(5u)
   };
 
   inline std::underlying_type_t<EventCategory> operator |(const EventCategory& a, const EventCategory& b) {

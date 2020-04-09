@@ -8,7 +8,7 @@ option(BUILD_SANDBOX "Build sandbox application" ON)
 
 if (CMAKE_BUILD_TYPE MATCHES Debug)
   message("CMAKE IN DEBUG MODE")
-  set(FND_DEBUG ON)
+  set(FND_BUILD_DEBUG ON)
 elseif(CMAKE_BUILD_TYPE MATCHES Release)
   message("CMAKE IN RELEASE MODE")
 endif ()

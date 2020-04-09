@@ -4,7 +4,7 @@ project(Foundation-Engine)
 
 # Options
 option(FND_BUILD_SHARED_LIB "Build Foundation::Engine as a shared library" OFF)
-option(FND_DEBUG "Keep debug preprocessor directives in code" OFF)
+option(FND_BUILD_DEBUG "Keep debug preprocessor directives in code" OFF)
 
 # Add sources
 set(ENGINE_SOURCES
@@ -51,8 +51,8 @@ if(FND_BUILD_SHARED_LIB)
   target_compile_definitions(${PROJECT_NAME} PRIVATE FND_EXPORT)
 endif()
 
-if(FND_DEBUG)
-  target_compile_definitions(${PROJECT_NAME} PUBLIC FND_DEBUG)
+if(FND_BUILD_DEBUG)
+  target_compile_definitions(${PROJECT_NAME} PUBLIC FND_BUILD_DEBUG)
 endif()
 
 # Set include directories
