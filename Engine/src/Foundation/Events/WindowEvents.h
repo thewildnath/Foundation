@@ -10,6 +10,10 @@ namespace fnd {
   public:
     WindowCloseEvent() = default;
 
+    std::string toString() const override {
+      return "WindowCloseEvent";
+    }
+
     EVENT_CLASS_TYPE(EventType::WindowClosed)
     EVENT_CLASS_CATEGORY(EventCategory::Window)
   };
@@ -22,7 +26,7 @@ namespace fnd {
     inline uint32_t getWidth() const { return width; }
     inline uint32_t getHeight() const { return height; }
 
-    std::string toString() const {
+    std::string toString() const override {
       std::stringstream ss;
       ss << "WindowResizedEvent: " << width << " " << height;
       return ss.str();

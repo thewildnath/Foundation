@@ -58,3 +58,5 @@
 
 // Other useful macros
 #define FND_BIT(x) (1u << x)
+
+#define FND_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)

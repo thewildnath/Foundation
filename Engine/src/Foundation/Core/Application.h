@@ -3,6 +3,7 @@
 #include "Foundation/fndpch.h"
 
 #include "Foundation/Core/Window.h"
+#include "Foundation/Events/WindowEvents.h"
 
 namespace fnd {
 
@@ -10,9 +11,14 @@ namespace fnd {
   public:
     Application();
     virtual ~Application() = 0;
+
     void run();
 
+    void onEvent(Event& e);
+
   private:
+    bool onWindowClose(WindowCloseEvent& e);
+
     std::unique_ptr<Window> window;
 
     bool running;

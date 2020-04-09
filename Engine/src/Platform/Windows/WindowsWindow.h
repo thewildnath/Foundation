@@ -30,7 +30,7 @@ namespace fnd {
     void shutdown();
 
   private:
-    GLFWwindow* window;
+    GLFWwindow* window{};
 
     struct WindowData {
       std::string title;

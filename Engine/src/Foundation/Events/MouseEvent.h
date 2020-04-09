@@ -15,7 +15,7 @@ namespace fnd {
     inline float getX() { return mouseX; }
     inline float getY() { return mouseY; }
 
-    std::string toString() {
+    std::string toString() const override {
       std::stringstream ss;
       ss << "MouseMovedEvent: " << mouseX << " " << mouseY;
       return ss.str();
