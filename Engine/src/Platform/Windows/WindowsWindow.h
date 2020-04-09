@@ -15,22 +15,22 @@ namespace fnd {
 
     void onUpdate() override;
 
-    inline uint32_t getWidth() const override { return data.width; }
-    inline uint32_t getHeight() const override { return data.height; }
+    inline uint32_t getWidth() const override { return m_data.width; }
+    inline uint32_t getHeight() const override { return m_data.height; }
 
-    inline void setEventCallback(const EventCallback& eventCallback) override { data.eventCallback = eventCallback; }
+    inline void setEventCallback(const EventCallback& eventCallback) override { m_data.eventCallback = eventCallback; }
 
     void setVSync(bool enabled) override;
-    inline bool isVSync() const override { return data.vsync; };
+    inline bool isVSync() const override { return m_data.vsync; };
 
-    inline void* getNativeWindow() const override { return window; }
+    inline void* getNativeWindow() const override { return m_window; }
 
   private:
     void init(const WindowProps& props);
     void shutdown();
 
   private:
-    GLFWwindow* window{};
+    GLFWwindow* m_window{};
 
     struct WindowData {
       std::string title;
@@ -41,7 +41,7 @@ namespace fnd {
       EventCallback eventCallback;
     };
 
-    WindowData data;
+    WindowData m_data;
   };
 
 }

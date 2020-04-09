@@ -9,34 +9,34 @@ namespace fnd {
 
   class KeyEvent : public Event {
   public:
-    inline KeyCode getKeyCode() const { return keyCode; }
+    inline KeyCode getKeyCode() const { return m_keyCode; }
 
     EVENT_CLASS_CATEGORY(EventCategory::Input | EventCategory::Keyboard)
 
   protected:
     explicit KeyEvent(KeyCode keyCode) :
-      keyCode(keyCode) {};
+      m_keyCode(keyCode) {};
 
-    KeyCode keyCode;
+    KeyCode m_keyCode;
   };
 
   class KeyPressedEvent : public KeyEvent {
   public:
     KeyPressedEvent(KeyCode keyCode, int repeatCount) :
-      KeyEvent(keyCode), repeatCount(repeatCount) {};
+      KeyEvent(keyCode), m_repeatCount(repeatCount) {};
 
-    inline int getRepeatCount() const { return repeatCount; }
+    inline int getRepeatCount() const { return m_repeatCount; }
 
     std::string toString() const override {
       std::stringstream ss;
-      ss << "KeyPressedEvent: " << keyCode << " (" << repeatCount << " repeats)";
+      ss << "KeyPressedEvent: " << m_keyCode << " (" << m_repeatCount << " repeats)";
       return ss.str();
     }
 
     EVENT_CLASS_TYPE(EventType::KeyPressed)
 
   private:
-    int repeatCount;
+    int m_repeatCount;
   };
 
   class KeyReleasedEvent : public KeyEvent {
@@ -46,7 +46,7 @@ namespace fnd {
 
     std::string toString() const override {
       std::stringstream ss;
-      ss << "KeyReleasedEvent: " << keyCode;
+      ss << "KeyReleasedEvent: " << m_keyCode;
       return ss.str();
     }
 
@@ -60,7 +60,7 @@ namespace fnd {
 
     std::string toString() const override {
       std::stringstream ss;
-      ss << "KeyTypedEvent: " << keyCode;
+      ss << "KeyTypedEvent: " << m_keyCode;
       return ss.str();
     }
 

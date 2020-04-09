@@ -4,17 +4,17 @@
 
 namespace fnd {
 
-  std::shared_ptr<spdlog::logger> Log::engineLogger;
-  std::shared_ptr<spdlog::logger> Log::clientLogger;
+  std::shared_ptr<spdlog::logger> Log::m_engineLogger;
+  std::shared_ptr<spdlog::logger> Log::m_clientLogger;
 
   void Log::init() {
     spdlog::set_pattern("%^[%T] %n: %v%$");
 
-    engineLogger = spdlog::stdout_color_mt("FND");
-    engineLogger->set_level(spdlog::level::trace);
-//
-    clientLogger = spdlog::stdout_color_mt("APP");
-    clientLogger->set_level(spdlog::level::trace);
+    m_engineLogger = spdlog::stdout_color_mt("FND");
+    m_engineLogger->set_level(spdlog::level::trace);
+
+    m_clientLogger = spdlog::stdout_color_mt("APP");
+    m_clientLogger->set_level(spdlog::level::trace);
   }
 
 }

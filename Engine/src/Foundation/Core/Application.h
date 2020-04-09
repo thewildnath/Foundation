@@ -19,9 +19,9 @@ namespace fnd {
   private:
     bool onWindowClose(WindowCloseEvent& e);
 
-    std::unique_ptr<Window> window;
+    std::unique_ptr<Window> m_window;
 
-    bool running;
+    bool m_running;
   };
 
 }

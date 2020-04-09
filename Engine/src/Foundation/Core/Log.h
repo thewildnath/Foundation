@@ -10,12 +10,12 @@ namespace fnd {
   public:
     static void init();
 
-    inline static std::shared_ptr<spdlog::logger>& getEngineLogger() { return engineLogger; }
-    inline static std::shared_ptr<spdlog::logger>& getClientLogger() { return clientLogger; }
+    inline static std::shared_ptr<spdlog::logger>& getEngineLogger() { return m_engineLogger; }
+    inline static std::shared_ptr<spdlog::logger>& getClientLogger() { return m_clientLogger; }
 
   private:
-    static std::shared_ptr<spdlog::logger> engineLogger;
-    static std::shared_ptr<spdlog::logger> clientLogger;
+    static std::shared_ptr<spdlog::logger> m_engineLogger;
+    static std::shared_ptr<spdlog::logger> m_clientLogger;
   };
 
 }

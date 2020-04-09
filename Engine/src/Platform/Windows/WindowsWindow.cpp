@@ -8,7 +8,7 @@
 
 namespace fnd {
 
-  static uint32_t glfwWindowCount = 0;
+  static uint32_t s_glfwWindowCount = 0;
 
   static void glfwErrorCallback(int error,  const char* description) {
     FND_E_ERROR("GLFW Error: ({0}): {1}", error, description);
@@ -23,38 +23,38 @@ namespace fnd {
   }
 
   void WindowsWindow::init(const fnd::WindowProps &props) {
-    data.title  = props.title;
-    data.width  = props.width;
-    data.height = props.height;
+    m_data.title  = props.title;
+    m_data.width  = props.width;
+    m_data.height = props.height;
 
-    FND_E_INFO("Creating window: {0} ({1} {2})", data.title, data.width, data.height);
+    FND_E_INFO("Creating window: {0} ({1} {2})", m_data.title, m_data.width, m_data.height);
 
-    if (glfwWindowCount == 0) {
+    if (s_glfwWindowCount == 0) {
       int success = glfwInit();
       FND_E_ASSERT(success == GLFW_TRUE, "Could not initialise GLFW!");
       glfwSetErrorCallback(glfwErrorCallback);
     }
 
-    window = glfwCreateWindow(
-      static_cast<int>(data.width),
-      static_cast<int>(data.height),
-      data.title.c_str(),
+    m_window = glfwCreateWindow(
+      static_cast<int>(m_data.width),
+      static_cast<int>(m_data.height),
+      m_data.title.c_str(),
       nullptr, nullptr);
-    ++glfwWindowCount;
+    ++s_glfwWindowCount;
 
     setVSync(true);
 
     // Set glfw callbacks
-    glfwSetWindowUserPointer(window, &data);
+    glfwSetWindowUserPointer(m_window, &m_data);
 
-    glfwSetWindowCloseCallback(window, [](GLFWwindow* glfwWindow) {
+    glfwSetWindowCloseCallback(m_window, [](GLFWwindow* glfwWindow) {
       WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(glfwWindow));
 
       WindowCloseEvent e;
       data.eventCallback(e);
     });
 
-    glfwSetWindowSizeCallback(window, [](GLFWwindow* glfwWindow, int width, int height) {
+    glfwSetWindowSizeCallback(m_window, [](GLFWwindow* glfwWindow, int width, int height) {
       WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(glfwWindow));
       data.width = width;
       data.height = height;
@@ -63,7 +63,7 @@ namespace fnd {
       data.eventCallback(e);
     });
 
-    glfwSetKeyCallback(window, [](GLFWwindow* glfwWindow, int key, int scancode, int action, int mods) {
+    glfwSetKeyCallback(m_window, [](GLFWwindow* glfwWindow, int key, int scancode, int action, int mods) {
       WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(glfwWindow));
 
       switch (action) {
@@ -88,7 +88,7 @@ namespace fnd {
       }
     });
 
-    glfwSetMouseButtonCallback(window, [](GLFWwindow* glfwWindow, int button, int action, int mods) {
+    glfwSetMouseButtonCallback(m_window, [](GLFWwindow* glfwWindow, int button, int action, int mods) {
       WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(glfwWindow));
 
       switch (action) {
@@ -108,14 +108,14 @@ namespace fnd {
       }
     });
 
-    glfwSetScrollCallback(window, [](GLFWwindow* glfwWindow, double xOffset, double yOffset) {
+    glfwSetScrollCallback(m_window, [](GLFWwindow* glfwWindow, double xOffset, double yOffset) {
       WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(glfwWindow));
 
       MouseScrolledEvent e(static_cast<float>(xOffset), static_cast<float>(yOffset));
       data.eventCallback(e);
     });
 
-    glfwSetCursorPosCallback(window, [](GLFWwindow* glfwWindow, double xPos, double yPos) {
+    glfwSetCursorPosCallback(m_window, [](GLFWwindow* glfwWindow, double xPos, double yPos) {
       WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(glfwWindow));
 
       MouseMovedEvent e(static_cast<float>(xPos), static_cast<float>(yPos));
@@ -124,17 +124,17 @@ namespace fnd {
   }
 
   void WindowsWindow::shutdown() {
-    glfwDestroyWindow(window);
-    --glfwWindowCount;
+    glfwDestroyWindow(m_window);
+    --s_glfwWindowCount;
 
-    if (glfwWindowCount == 0) {
+    if (s_glfwWindowCount == 0) {
       glfwTerminate();
     }
   }
 
   void WindowsWindow::onUpdate() {
     glfwPollEvents();
-    glfwSwapBuffers(window);
+    glfwSwapBuffers(m_window);
   }
 
   void WindowsWindow::setVSync(bool enabled) {
@@ -144,6 +144,6 @@ namespace fnd {
       glfwSwapInterval(0);
     }
 
-    data.vsync = enabled;
+    m_data.vsync = enabled;
   }
 }

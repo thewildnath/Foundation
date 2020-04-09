@@ -3,17 +3,17 @@
 namespace fnd {
 
   Application::Application() {
-    window = Window::create();
-    window->setEventCallback(FND_BIND_EVENT_FN(Application::onEvent));
+    m_window = Window::create();
+    m_window->setEventCallback(FND_BIND_EVENT_FN(Application::onEvent));
 
-    running = true;
+    m_running = true;
   }
 
   Application::~Application() = default;
 
   void Application::run() {
-    while (running) {
-      window->onUpdate();
+    while (m_running) {
+      m_window->onUpdate();
     }
   }
 
@@ -25,7 +25,7 @@ namespace fnd {
   }
 
   bool Application::onWindowClose(fnd::WindowCloseEvent &e) {
-    running = false;
+    m_running = false;
     return true;
   }
 

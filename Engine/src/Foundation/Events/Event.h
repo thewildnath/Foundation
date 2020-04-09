@@ -55,19 +55,19 @@ namespace fnd {
   class FND_API EventDispatcher {
   public:
     explicit EventDispatcher(Event& event) :
-      event(event) {};
+      m_event(event) {};
 
     template<typename T, typename F>
     bool dispatch(const F& func) {
-      if (event.getEventType() == T::getStaticType()) {
-        event.handled = func(static_cast<T&>(event));
+      if (m_event.getEventType() == T::getStaticType()) {
+        m_event.handled = func(static_cast<T&>(m_event));
         return true;
       }
       return false;
     }
 
   private:
-    Event& event;
+    Event& m_event;
   };
 
   inline std::ostream& operator<<(std::ostream& os, const Event& e) {
