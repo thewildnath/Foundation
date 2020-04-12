@@ -133,8 +133,8 @@ namespace fnd {
   }
 
   void WindowsWindow::onUpdate() {
-    glfwPollEvents();
     glfwSwapBuffers(m_window);
+    glfwPollEvents();
   }
 
   void WindowsWindow::setVSync(bool enabled) {
