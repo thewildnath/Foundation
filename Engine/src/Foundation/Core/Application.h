@@ -4,13 +4,14 @@
 
 #include "Foundation/Core/Window.h"
 #include "Foundation/Events/WindowEvents.h"
+#include "Foundation/Utils/Singleton.h"
 
 namespace fnd {
 
-  class FND_API Application {
+  class FND_API Application : public Singleton<Application> {
   public:
     Application();
-    virtual ~Application() = 0;
+    virtual ~Application();
 
     void run();
 

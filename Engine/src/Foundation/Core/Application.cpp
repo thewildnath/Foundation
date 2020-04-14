@@ -2,6 +2,8 @@
 
 namespace fnd {
 
+  template<> Application* Singleton<Application>::m_singleton = nullptr;
+
   Application::Application() {
     m_window = Window::create();
     m_window->setEventCallback(FND_BIND_EVENT_FN(Application::onEvent));

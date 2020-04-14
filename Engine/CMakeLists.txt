@@ -25,6 +25,7 @@ set(ENGINE_SOURCES
   src/Foundation/Events/WindowEvents.h
   src/Foundation/Input/KeyCodes.h
   src/Foundation/Input/MouseCodes.h
+  src/Foundation/Utils/Singleton.h
   src/Platform/Windows/WindowsWindow.cpp
   src/Platform/Windows/WindowsWindow.h
   )
