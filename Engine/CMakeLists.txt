@@ -47,9 +47,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Specify compile definitions
+target_compile_definitions(${PROJECT_NAME} PRIVATE FND_BUILD_ENGINE)
+
 if(FND_BUILD_SHARED_LIB)
   target_compile_definitions(${PROJECT_NAME} PUBLIC FND_BUILD_SHARED)
-  target_compile_definitions(${PROJECT_NAME} PRIVATE FND_EXPORT)
 endif()
 
 if(FND_BUILD_DEBUG)

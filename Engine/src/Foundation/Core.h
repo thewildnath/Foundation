@@ -14,7 +14,7 @@
 // Macro for exporting/importing Windows DLLs
 // Taken from https://atomheartother.github.io/c++/2018/07/12/CPPDynLib.html
 #ifdef FND_BUILD_SHARED
-  #ifdef FND_EXPORT
+  #ifdef FND_BUILD_ENGINE
   // Exporting
     #ifdef __GNUC__
       #define FND_API __attribute__ ((dllexport))
