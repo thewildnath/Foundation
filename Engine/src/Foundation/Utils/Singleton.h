@@ -23,12 +23,12 @@ namespace fnd {
     Singleton(const Singleton<T>&) = delete;
     Singleton& operator=(const Singleton<T>&) = delete;
 
-    static T& getSingleton() {
+    static inline T& getSingleton() {
       FND_E_ASSERT(m_singleton != nullptr, "Singleton is not instanced.");
       return *m_singleton;
     }
 
-    static T* getSingletonPtr() {
+    static inline T* getSingletonPtr() {
       return m_singleton;
     }
 
