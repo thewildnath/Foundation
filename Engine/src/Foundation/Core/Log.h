@@ -20,20 +20,20 @@ namespace fnd {
 
 }
 
-// Engine log macros
-#define FND_E_TRACE(...)    ::fnd::Log::getEngineLogger()->trace(__VA_ARGS__)
-#define FND_E_DEBUG(...)    ::fnd::Log::getEngineLogger()->debug(__VA_ARGS__)
-#define FND_E_INFO(...)     ::fnd::Log::getEngineLogger()->info(__VA_ARGS__)
-#define FND_E_WARN(...)     ::fnd::Log::getEngineLogger()->warn(__VA_ARGS__)
-#define FND_E_ERROR(...)    ::fnd::Log::getEngineLogger()->error(__VA_ARGS__)
-#define FND_E_CRITICAL(...) ::fnd::Log::getEngineLogger()->critical(__VA_ARGS__)
+// Log macros
+#ifdef FND_BUILD_ENGINE
+  #define FND_GET_LOGGER ::fnd::Log::getEngineLogger()
+#else
+  #define FND_GET_LOGGER ::fnd::Log::getClientLogger()
+#endif
 
-// Client log macros
-#define FND_TRACE(...)      ::fnd::Log::getClientLogger()->trace(__VA_ARGS__)
-#define FND_DEBUG(...)      ::fnd::Log::getClientLogger()->debug(__VA_ARGS__)
-#define FND_INFO(...)       ::fnd::Log::getClientLogger()->info(__VA_ARGS__)
-#define FND_WARN(...)       ::fnd::Log::getClientLogger()->warn(__VA_ARGS__)
-#define FND_ERROR(...)      ::fnd::Log::getClientLogger()->error(__VA_ARGS__)
-#define FND_CRITICAL(...)   ::fnd::Log::getClientLogger()->critical(__VA_ARGS__)
+#define FND_TRACE(...)      FND_GET_LOGGER->trace(__VA_ARGS__)
+#define FND_DEBUG(...)      FND_GET_LOGGER->debug(__VA_ARGS__)
+#define FND_INFO(...)       FND_GET_LOGGER->info(__VA_ARGS__)
+#define FND_WARN(...)       FND_GET_LOGGER->warn(__VA_ARGS__)
+#define FND_ERROR(...)      FND_GET_LOGGER->error(__VA_ARGS__)
+#define FND_CRITICAL(...)   FND_GET_LOGGER->critical(__VA_ARGS__)
+
+
 
 // TODO: strip log defines from distribution builds

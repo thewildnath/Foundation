@@ -10,7 +10,7 @@ namespace fnd {
   #ifdef FND_PLATFORM_WINDOWS
     return std::make_unique<WindowsWindow>(props);
   #else
-    FND_E_ASSERT(false, "Unknown platform!");
+    FND_ASSERT(false, "Unknown platform!");
     return nullptr;
   #endif
   }

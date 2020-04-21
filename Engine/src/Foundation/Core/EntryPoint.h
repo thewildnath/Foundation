@@ -14,14 +14,14 @@ namespace fnd {
 
 int main(int argc, char** argv) {
   fnd::Log::init();
-  FND_E_INFO("Initialised logger.");
+  FND_INFO("Initialised logger.");
 
-  FND_E_INFO("Creating application.");
+  FND_INFO("Creating application.");
   auto app = fnd::createApplication();
 
-  FND_E_INFO("Starting application.");
+  FND_INFO("Starting application.");
   app->run();
-  FND_E_INFO("Application closed.");
+  FND_INFO("Application closed.");
 
   delete app;
 

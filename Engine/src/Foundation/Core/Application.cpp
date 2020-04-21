@@ -20,7 +20,7 @@ namespace fnd {
   }
 
   void Application::onEvent(Event& e) {
-    FND_E_DEBUG(e.toString());
+    FND_DEBUG(e.toString());
 
     EventDispatcher dispatcher(e);
     dispatcher.dispatch<WindowCloseEvent>(FND_BIND_EVENT_FN(Application::onWindowClose));

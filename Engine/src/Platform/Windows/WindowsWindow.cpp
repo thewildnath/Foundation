@@ -11,7 +11,7 @@ namespace fnd {
   static uint32_t s_glfwWindowCount = 0;
 
   static void glfwErrorCallback(int error,  const char* description) {
-    FND_E_ERROR("GLFW Error: ({0}): {1}", error, description);
+    FND_ERROR("GLFW Error: ({0}): {1}", error, description);
   }
 
   WindowsWindow::WindowsWindow(const fnd::WindowProps &props) {
@@ -27,11 +27,11 @@ namespace fnd {
     m_data.width  = props.width;
     m_data.height = props.height;
 
-    FND_E_INFO("Creating window: {0} ({1} {2})", m_data.title, m_data.width, m_data.height);
+    FND_INFO("Creating window: {0} ({1} {2})", m_data.title, m_data.width, m_data.height);
 
     if (s_glfwWindowCount == 0) {
       int success = glfwInit();
-      FND_E_ASSERT(success == GLFW_TRUE, "Could not initialise GLFW!");
+      FND_ASSERT(success == GLFW_TRUE, "Could not initialise GLFW!");
       glfwSetErrorCallback(glfwErrorCallback);
     }
 
@@ -83,7 +83,7 @@ namespace fnd {
           break;
         }
         default: {
-          FND_E_WARN("Unknown GLFW key action type: {0}", action);
+          FND_WARN("Unknown GLFW key action type: {0}", action);
         }
       }
     });
@@ -103,7 +103,7 @@ namespace fnd {
           break;
         }
         default: {
-          FND_E_WARN("Unknown GLFW mouse action type: {0}", action);
+          FND_WARN("Unknown GLFW mouse action type: {0}", action);
         }
       }
     });

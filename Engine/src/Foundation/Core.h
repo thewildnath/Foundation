@@ -49,10 +49,8 @@
 
 // Assertions
 #ifdef FND_ENABLE_ASSERTIONS
-  #define FND_E_ASSERT(x, ...) { if (!(x)) { FND_E_ERROR("Assertion failed: {0}", __VA_ARGS__); FND_DEBUG_BREAK; } }
   #define FND_ASSERT(x, ...) { if (!(x)) { FND_ERROR("Assertion failed: {0}", __VA_ARGS__); FND_DEBUG_BREAK; } }
 #else
-  #define FND_E_ASSERT(x, ...)
   #define FND_ASSERT(x, ...)
 #endif
 
