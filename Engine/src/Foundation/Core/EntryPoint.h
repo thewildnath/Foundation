@@ -13,7 +13,7 @@ namespace fnd {
 #ifdef FND_PLATFORM_WINDOWS
 
 int main(int argc, char** argv) {
-  fnd::Log::init();
+  new fnd::Log();
   FND_INFO("Initialised logger.");
 
   FND_INFO("Creating application.");

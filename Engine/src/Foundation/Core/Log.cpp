@@ -4,10 +4,9 @@
 
 namespace fnd {
 
-  std::shared_ptr<spdlog::logger> Log::m_engineLogger;
-  std::shared_ptr<spdlog::logger> Log::m_clientLogger;
+  template<> Log* Singleton<Log>::m_singleton = nullptr;
 
-  void Log::init() {
+  Log::Log() {
     spdlog::set_pattern("%^[%T] %n: %v%$");
 
     m_engineLogger = spdlog::stdout_color_mt("FND");
@@ -15,6 +14,11 @@ namespace fnd {
 
     m_clientLogger = spdlog::stdout_color_mt("APP");
     m_clientLogger->set_level(spdlog::level::trace);
+  }
+
+  Log::~Log() {
+    spdlog::drop("FND");
+    spdlog::drop("APP");
   }
 
 }

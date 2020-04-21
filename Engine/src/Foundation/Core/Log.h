@@ -2,29 +2,31 @@
 
 #include <spdlog/spdlog.h>
 
-#include "Foundation/fndpch.h"
+#include "Foundation/Core.h"
+#include "Foundation/Utils/Singleton.h"
 
 namespace fnd {
 
-  class FND_API Log {
+  class FND_API Log : public Singleton<Log> {
   public:
-    static void init();
+    Log();
+    ~Log();
 
-    inline static std::shared_ptr<spdlog::logger>& getEngineLogger() { return m_engineLogger; }
-    inline static std::shared_ptr<spdlog::logger>& getClientLogger() { return m_clientLogger; }
+    inline std::shared_ptr<spdlog::logger>& getEngineLogger() { return m_engineLogger; }
+    inline std::shared_ptr<spdlog::logger>& getClientLogger() { return m_clientLogger; }
 
   private:
-    static std::shared_ptr<spdlog::logger> m_engineLogger;
-    static std::shared_ptr<spdlog::logger> m_clientLogger;
+    std::shared_ptr<spdlog::logger> m_engineLogger;
+    std::shared_ptr<spdlog::logger> m_clientLogger;
   };
 
 }
 
 // Log macros
 #ifdef FND_BUILD_ENGINE
-  #define FND_GET_LOGGER ::fnd::Log::getEngineLogger()
+  #define FND_GET_LOGGER ::fnd::Log::getSingletonPtr()->getEngineLogger()
 #else
-  #define FND_GET_LOGGER ::fnd::Log::getClientLogger()
+  #define FND_GET_LOGGER ::fnd::Log::getSingletonPtr()->getClientLogger()
 #endif
 
 #define FND_TRACE(...)      FND_GET_LOGGER->trace(__VA_ARGS__)
