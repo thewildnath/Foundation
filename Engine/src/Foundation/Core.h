@@ -35,8 +35,6 @@
 
 // Debug preprocessor directives
 #ifdef FND_BUILD_DEBUG
-  #define FND_ENABLE_ASSERTIONS
-
   #ifdef _MSC_VER
     #define FND_DEBUG_BREAK __debugbreak()
   #else
@@ -48,11 +46,9 @@
 #endif
 
 // Assertions
-#ifdef FND_ENABLE_ASSERTIONS
-  #define FND_ASSERT(x, ...) { if (!(x)) { FND_ERROR("Assertion failed: {0}", __VA_ARGS__); FND_DEBUG_BREAK; } }
-#else
-  #define FND_ASSERT(x, ...)
-#endif
+// TODO: improve assert system
+#define FND_SIMPLE_ASSERT(x) { if (!(x)) { abort(); } }
+#define FND_ASSERT(x, ...) { if (!(x)) { FND_ERROR("Assertion failed: {0}", __VA_ARGS__); FND_DEBUG_BREAK; std::abort(); } }
 
 // Other useful macros
 #define FND_BIT(x) (1u << x)

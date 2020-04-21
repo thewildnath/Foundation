@@ -11,12 +11,12 @@ namespace fnd {
   class Singleton {
   public:
     Singleton() {
-      FND_ASSERT(m_singleton == nullptr, "There can only be one singleton instance.");
+      FND_SIMPLE_ASSERT(m_singleton == nullptr);
       m_singleton = static_cast<T*>(this);
     }
 
     ~Singleton() {
-      FND_ASSERT(m_singleton != nullptr, "Singleton is not instanced.");
+      FND_SIMPLE_ASSERT(m_singleton != nullptr);
       m_singleton = nullptr;
     }
 
@@ -24,7 +24,7 @@ namespace fnd {
     Singleton& operator=(const Singleton<T>&) = delete;
 
     static inline T& getSingleton() {
-      FND_ASSERT(m_singleton != nullptr, "Singleton is not instanced.");
+      FND_SIMPLE_ASSERT(m_singleton != nullptr);
       return *m_singleton;
     }
 
