@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Foundation/fndpch.h"
-
 #include "Foundation/Events/Event.h"
 #include "Foundation/Input/MouseCodes.h"
 

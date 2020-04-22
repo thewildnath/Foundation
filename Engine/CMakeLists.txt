@@ -12,7 +12,7 @@ set(ENGINE_SOURCES
   src/Foundation/Core.h
   src/Foundation/fndpch.cpp
   src/Foundation/fndpch.h
-  src/Foundation/Core/EntryPoint.h
+  src/Foundation/EntryPoint.h
   src/Foundation/Core/Application.cpp
   src/Foundation/Core/Application.h
   src/Foundation/Core/Log.cpp

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Foundation/fndpch.h"
-
+#include "Foundation/Core/Log.h"
 #include "Foundation/Core/Window.h"
 #include "Foundation/Events/WindowEvents.h"
 #include "Foundation/Utils/Singleton.h"
@@ -11,7 +11,7 @@ namespace fnd {
   class FND_API Application : public Singleton<Application> {
   public:
     Application();
-    virtual ~Application();
+    virtual ~Application() = default;
 
     void run();
 
@@ -23,6 +23,9 @@ namespace fnd {
     std::unique_ptr<Window> m_window;
 
     bool m_running;
+
+    // Systems
+    UniquePtr<Log> m_logPtr;
   };
 
 }

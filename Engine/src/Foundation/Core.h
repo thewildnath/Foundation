@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 // Find current platform
 #ifdef _WIN32
   #ifdef _WIN64
@@ -52,5 +54,24 @@
 
 // Other useful macros
 #define FND_BIT(x) (1u << x)
-
 #define FND_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+namespace fnd {
+  template<typename T>
+  using UniquePtr = std::unique_ptr<T>;
+
+  template<typename T, typename ... Args>
+  constexpr UniquePtr<T> makeUnique(Args&& ... args)
+  {
+    return std::make_unique<T>(std::forward<Args>(args)...);
+  }
+
+  template<typename T>
+  using SharedPtr = std::shared_ptr<T>;
+
+  template<typename T, typename ... Args>
+  constexpr SharedPtr<T> makeShared(Args&& ... args)
+  {
+    return std::make_shared<T>(std::forward<Args>(args)...);
+  }
+}

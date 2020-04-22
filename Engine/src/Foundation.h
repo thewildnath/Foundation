@@ -3,7 +3,7 @@
 #include "Foundation/Core.h"
 
 // ------- Entry point -------
-#include "Foundation/Core/EntryPoint.h"
+#include "Foundation/EntryPoint.h"
 // ---------------------------
 
 #include "Foundation/Core/Application.h"

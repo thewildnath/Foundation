@@ -9,9 +9,13 @@ namespace fnd {
     m_window->setEventCallback(FND_BIND_EVENT_FN(Application::onEvent));
 
     m_running = true;
-  }
 
-  Application::~Application() = default;
+    // Initialise systems
+    if (!Log::getSingletonPtr()) {
+      new Log();
+    }
+    m_logPtr = UniquePtr<Log>(Log::getSingletonPtr());
+  }
 
   void Application::run() {
     while (m_running) {
