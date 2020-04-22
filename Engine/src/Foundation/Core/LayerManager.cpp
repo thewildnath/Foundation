@@ -14,12 +14,14 @@ namespace fnd {
   void LayerManager::pushLayer(fnd::Layer* layer) {
     m_layerStack.emplace(m_layerStack.begin() + m_layerInsertIndex, layer);
     ++m_layerInsertIndex;
+    layer->onAttach();
 
     FND_INFO("Pushed layer: {0}", layer->getName());
   }
 
   void LayerManager::pushOverlay(fnd::Layer* overlay) {
     m_layerStack.emplace_back(overlay);
+    overlay->onAttach();
 
     FND_INFO("Pushed overlay: {0}", overlay->getName());
   }

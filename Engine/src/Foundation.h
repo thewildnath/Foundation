@@ -7,6 +7,8 @@
 // ---------------------------
 
 #include "Foundation/Core/Application.h"
+#include "Foundation/Core/Layer.h"
+#include "Foundation/Core/LayerManager.h"
 #include "Foundation/Core/Log.h"
 
 #include "Foundation/Events/Event.h"

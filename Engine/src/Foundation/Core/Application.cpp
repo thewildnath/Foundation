@@ -22,6 +22,11 @@ namespace fnd {
 
   void Application::run() {
     while (m_running) {
+      // Update layers in order
+      for (Layer* layer : *m_layerManagerPtr) {
+        layer->onUpdate();
+      }
+
       m_window->onUpdate();
     }
   }
@@ -31,6 +36,11 @@ namespace fnd {
 
     EventDispatcher dispatcher(e);
     dispatcher.dispatch<WindowCloseEvent>(FND_BIND_EVENT_FN(Application::onWindowClose));
+
+    // Propagate event inversely through layers
+    for (auto it = m_layerManagerPtr->rbegin(); it != m_layerManagerPtr->rend() && !e.handled; ++it) {
+      (*it)->onEvent(e);
+    }
   }
 
   // LayerManager wrapper
