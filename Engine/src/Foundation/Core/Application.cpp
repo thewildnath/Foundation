@@ -1,5 +1,7 @@
 #include "Application.h"
 
+#include <memory>
+
 namespace fnd {
 
   template<> Application* Singleton<Application>::m_singleton = nullptr;
@@ -15,6 +17,7 @@ namespace fnd {
       new Log();
     }
     m_logPtr = UniquePtr<Log>(Log::getSingletonPtr());
+    m_layerManagerPtr = std::make_unique<LayerManager>();
   }
 
   void Application::run() {
@@ -28,6 +31,23 @@ namespace fnd {
 
     EventDispatcher dispatcher(e);
     dispatcher.dispatch<WindowCloseEvent>(FND_BIND_EVENT_FN(Application::onWindowClose));
+  }
+
+  // LayerManager wrapper
+  void Application::pushLayer(fnd::Layer* layer) {
+    m_layerManagerPtr->pushLayer(layer);
+  }
+
+  void Application::pushOverlay(fnd::Layer* overlay) {
+    m_layerManagerPtr->pushOverlay(overlay);
+  }
+
+  void Application::popLayer(fnd::Layer* layer) {
+    m_layerManagerPtr->popLayer(layer);
+  }
+
+  void Application::popOverlay(fnd::Layer* overlay) {
+    m_layerManagerPtr->popOverlay(overlay);
   }
 
   bool Application::onWindowClose(fnd::WindowCloseEvent &e) {

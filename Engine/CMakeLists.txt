@@ -15,6 +15,10 @@ set(ENGINE_SOURCES
   src/Foundation/EntryPoint.h
   src/Foundation/Core/Application.cpp
   src/Foundation/Core/Application.h
+  src/Foundation/Core/Layer.cpp
+  src/Foundation/Core/Layer.h
+  src/Foundation/Core/LayerManager.cpp
+  src/Foundation/Core/LayerManager.h
   src/Foundation/Core/Log.cpp
   src/Foundation/Core/Log.h
   src/Foundation/Core/Window.cpp
