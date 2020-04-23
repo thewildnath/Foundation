@@ -1,5 +1,7 @@
 #include "WindowsWindow.h"
 
+#include <glad/glad.h>
+
 #include "Foundation/Events/KeyEvent.h"
 #include "Foundation/Events/MouseEvent.h"
 #include "Foundation/Events/WindowEvents.h"
@@ -61,6 +63,10 @@ namespace fnd {
 
       WindowResizedEvent e(data.width, data.height);
       data.eventCallback(e);
+
+      // Initialise glad
+      int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+      FND_ASSERT(status, "Failed to initialise glad.")
     });
 
     glfwSetKeyCallback(m_window, [](GLFWwindow* glfwWindow, int key, int scancode, int action, int mods) {

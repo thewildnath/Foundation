@@ -12,3 +12,6 @@ set_target_properties(spdlog PROPERTIES FOLDER include)
 
 # Build glfw
 add_subdirectory(glfw)
+
+# Build glad
+add_subdirectory(glad)

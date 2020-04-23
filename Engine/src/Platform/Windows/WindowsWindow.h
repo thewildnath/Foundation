@@ -3,7 +3,6 @@
 #include <GLFW/glfw3.h>
 
 #include "Foundation/fndpch.h"
-
 #include "Foundation/Core/Window.h"
 
 namespace fnd {
