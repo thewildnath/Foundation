@@ -44,7 +44,11 @@ namespace fnd {
       nullptr, nullptr);
     ++s_glfwWindowCount;
 
-    setVSync(true);
+    glfwMakeContextCurrent(m_window);
+
+    // Initialise glad
+    int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+    FND_ASSERT(status, "Failed to initialise glad.")
 
     // Set glfw callbacks
     glfwSetWindowUserPointer(m_window, &m_data);
@@ -63,10 +67,6 @@ namespace fnd {
 
       WindowResizedEvent e(data.width, data.height);
       data.eventCallback(e);
-
-      // Initialise glad
-      int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-      FND_ASSERT(status, "Failed to initialise glad.")
     });
 
     glfwSetKeyCallback(m_window, [](GLFWwindow* glfwWindow, int key, int scancode, int action, int mods) {
@@ -127,6 +127,8 @@ namespace fnd {
       MouseMovedEvent e(static_cast<float>(xPos), static_cast<float>(yPos));
       data.eventCallback(e);
     });
+
+    setVSync(120);
   }
 
   void WindowsWindow::shutdown() {
@@ -139,17 +141,24 @@ namespace fnd {
   }
 
   void WindowsWindow::onUpdate() {
+    // TODO: remove this testing code
+    {
+      static bool faze = false;
+      faze = !faze;
+      if (faze) {
+        glClearColor(1, 0, 1, 1);
+      } else {
+        glClearColor(0, 1, 1, 1);
+      }
+      glClear(GL_COLOR_BUFFER_BIT);
+    }
+
     glfwSwapBuffers(m_window);
     glfwPollEvents();
   }
 
-  void WindowsWindow::setVSync(bool enabled) {
-    if (enabled) {
-      glfwSwapInterval(1);
-    } else {
-      glfwSwapInterval(0);
-    }
-
-    m_data.vsync = enabled;
+  void WindowsWindow::setVSync(int interval) {
+    glfwSwapInterval(interval);
+    m_data.vsync = (interval != 0);
   }
 }

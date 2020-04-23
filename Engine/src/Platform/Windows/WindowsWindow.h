@@ -19,7 +19,7 @@ namespace fnd {
 
     inline void setEventCallback(const EventCallback& eventCallback) override { m_data.eventCallback = eventCallback; }
 
-    void setVSync(bool enabled) override;
+    void setVSync(int interval) override;
     inline bool isVSync() const override { return m_data.vsync; };
 
     inline void* getNativeWindow() const override { return m_window; }

@@ -30,7 +30,7 @@ namespace fnd {
 
     virtual void setEventCallback(const EventCallback& eventCallback) = 0;
 
-    virtual void setVSync(bool enabled) = 0;
+    virtual void setVSync(int interval) = 0;
     virtual bool isVSync() const = 0;
 
     virtual void* getNativeWindow() const = 0;
