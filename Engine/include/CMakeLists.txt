@@ -15,3 +15,6 @@ add_subdirectory(glfw)
 
 # Build glad
 add_subdirectory(glad)
+
+#Build imgui
+include(imgui.cmake)

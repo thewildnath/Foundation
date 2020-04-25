@@ -33,9 +33,15 @@ set(ENGINE_SOURCES
   src/Foundation/Events/KeyEvent.h
   src/Foundation/Events/MouseEvent.h
   src/Foundation/Events/WindowEvents.h
+  src/Foundation/ImGui/ImGuiLayer.cpp
+  src/Foundation/ImGui/ImGuiLayer.h
   src/Foundation/Input/KeyCodes.h
   src/Foundation/Input/MouseCodes.h
   src/Foundation/Utils/Singleton.h
+  src/Platform/ImGui/imgui_impl_glfw.cpp
+  src/Platform/ImGui/imgui_impl_glfw.h
+  src/Platform/ImGui/imgui_impl_opengl3.cpp
+  src/Platform/ImGui/imgui_impl_opengl3.h
   src/Platform/Windows/WindowsWindow.cpp
   src/Platform/Windows/WindowsWindow.h
   )
@@ -74,4 +80,4 @@ add_subdirectory(include)
 #Link libraries
 target_link_libraries(${PROJECT_NAME}
   PUBLIC spdlog
-  PRIVATE glfw glad)
+  PRIVATE glfw glad imgui)

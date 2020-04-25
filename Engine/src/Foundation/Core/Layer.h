@@ -14,6 +14,7 @@ namespace fnd {
     virtual void onDetach() {};
     virtual void onEvent(Event& e) {};
     virtual void onUpdate() {};
+    virtual void onImGui() {};
 
     inline const std::string& getName() const { return m_name; }
   private:
