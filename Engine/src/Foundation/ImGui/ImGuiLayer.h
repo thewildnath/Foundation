@@ -4,12 +4,16 @@
 
 namespace fnd {
 
-  class ImGuiLayer : public Layer {
+  class FND_API ImGuiLayer : public Layer {
   public:
     ImGuiLayer();
     ~ImGuiLayer();
 
+    virtual void onUpdate() override;
     virtual void onImGui() override;
+
+  private:
+    float m_time;
   };
 
 }

@@ -141,18 +141,6 @@ namespace fnd {
   }
 
   void WindowsWindow::onUpdate() {
-    // TODO: remove this testing code
-    {
-      static bool faze = false;
-      faze = !faze;
-      if (faze) {
-        glClearColor(1, 0, 1, 1);
-      } else {
-        glClearColor(0, 1, 1, 1);
-      }
-      glClear(GL_COLOR_BUFFER_BIT);
-    }
-
     glfwSwapBuffers(m_window);
     glfwPollEvents();
   }

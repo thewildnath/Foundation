@@ -14,6 +14,7 @@ class SandboxApplication : public fnd::Application {
 public:
   SandboxApplication() {
     pushLayer(new ExampleLayer());
+    pushLayer(new fnd::ImGuiLayer());
   };
   ~SandboxApplication() override = default;
 };

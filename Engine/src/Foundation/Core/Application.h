@@ -23,10 +23,12 @@ namespace fnd {
     void popLayer(Layer* layer);
     void popOverlay(Layer* overlay);
 
+    Window* getWindow() { return m_window.get(); };
+
   private:
     bool onWindowClose(WindowCloseEvent& e);
 
-    std::unique_ptr<Window> m_window;
+    UniquePtr<Window> m_window;
 
     bool m_running;
 

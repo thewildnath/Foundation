@@ -80,4 +80,5 @@ add_subdirectory(include)
 #Link libraries
 target_link_libraries(${PROJECT_NAME}
   PUBLIC spdlog
-  PRIVATE glfw glad imgui)
+  PRIVATE glfw glad imgui
+  )

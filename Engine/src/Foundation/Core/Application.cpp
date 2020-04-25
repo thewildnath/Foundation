@@ -2,6 +2,8 @@
 
 #include <memory>
 
+#include <glad/glad.h>
+
 namespace fnd {
 
   template<> Application* Singleton<Application>::m_singleton = nullptr;
@@ -23,6 +25,19 @@ namespace fnd {
   void Application::run() {
     while (m_running) {
       // Update layers in order
+
+      // TODO: remove this testing code
+      {
+        static bool faze = false;
+        faze = !faze;
+        if (faze) {
+          glClearColor(1, 0, 1, 1);
+        } else {
+          glClearColor(0, 1, 1, 1);
+        }
+        glClear(GL_COLOR_BUFFER_BIT);
+      }
+
       for (Layer* layer : *m_layerManagerPtr) {
         layer->onUpdate();
       }
