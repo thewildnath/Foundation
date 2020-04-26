@@ -19,5 +19,7 @@ set(IMGUI_SOURCES
 # Define library
 add_library(${PROJECT_NAME} STATIC ${IMGUI_SOURCES})
 
+target_compile_definitions(${PROJECT_NAME} PUBLIC IMGUI_API=${IMGUI_API})
+
 # Set include directories
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/imgui)
