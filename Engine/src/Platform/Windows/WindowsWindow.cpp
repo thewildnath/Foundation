@@ -69,22 +69,22 @@ namespace fnd {
       data.eventCallback(e);
     });
 
-    glfwSetKeyCallback(m_window, [](GLFWwindow* glfwWindow, int key, int scancode, int action, int mods) {
+    glfwSetKeyCallback(m_window, [](GLFWwindow* glfwWindow, int keycode, int scancode, int action, int mods) {
       WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(glfwWindow));
 
       switch (action) {
         case GLFW_PRESS: {
-          KeyPressedEvent e(static_cast<KeyCode>(key), 0);
+          KeyPressedEvent e(static_cast<KeyCode>(keycode), 0);
           data.eventCallback(e);
           break;
         }
         case GLFW_RELEASE: {
-          KeyReleasedEvent e(static_cast<KeyCode>(key));
+          KeyReleasedEvent e(static_cast<KeyCode>(keycode));
           data.eventCallback(e);
           break;
         }
         case GLFW_REPEAT: {
-          KeyPressedEvent e(static_cast<KeyCode>(key), 1);
+          KeyPressedEvent e(static_cast<KeyCode>(keycode), 1);
           data.eventCallback(e);
           break;
         }
@@ -92,6 +92,13 @@ namespace fnd {
           FND_WARN("Unknown GLFW key action type: {0}", action);
         }
       }
+    });
+
+    glfwSetCharCallback(m_window, [](GLFWwindow* glfwWindow, unsigned int keycode) {
+      WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(glfwWindow));
+
+      KeyTypedEvent e(static_cast<KeyCode>(keycode));
+      data.eventCallback(e);
     });
 
     glfwSetMouseButtonCallback(m_window, [](GLFWwindow* glfwWindow, int button, int action, int mods) {
