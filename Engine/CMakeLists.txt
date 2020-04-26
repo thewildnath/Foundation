@@ -38,12 +38,13 @@ set(ENGINE_SOURCES
   src/Foundation/Input/KeyCodes.h
   src/Foundation/Input/MouseCodes.h
   src/Foundation/Utils/Singleton.h
-  src/Platform/ImGui/imgui_impl_glfw.cpp
-  src/Platform/ImGui/imgui_impl_glfw.h
-  src/Platform/ImGui/imgui_impl_opengl3.cpp
-  src/Platform/ImGui/imgui_impl_opengl3.h
   src/Platform/Windows/WindowsWindow.cpp
   src/Platform/Windows/WindowsWindow.h
+  # Imgui docking branch is still in development. Will eventually implement these files in FND
+  include/imgui/examples/imgui_impl_glfw.cpp
+  include/imgui/examples/imgui_impl_glfw.h
+  include/imgui/examples/imgui_impl_opengl3.cpp
+  include/imgui/examples/imgui_impl_opengl3.h
   )
 
 # Define library

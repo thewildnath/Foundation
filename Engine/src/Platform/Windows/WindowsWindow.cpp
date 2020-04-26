@@ -135,7 +135,7 @@ namespace fnd {
       data.eventCallback(e);
     });
 
-    setVSync(120);
+    setVSync(1);
   }
 
   void WindowsWindow::shutdown() {

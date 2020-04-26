@@ -33,7 +33,7 @@ namespace fnd {
         if (faze) {
           glClearColor(1, 0, 1, 1);
         } else {
-          glClearColor(0, 1, 1, 1);
+          glClearColor(0.9, 0.1, 0.9, 1);
         }
         glClear(GL_COLOR_BUFFER_BIT);
       }
