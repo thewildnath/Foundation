@@ -28,7 +28,7 @@ namespace fnd {
     std::vector<Layer*>::const_reverse_iterator rend() const { return m_layerStack.rend(); }
 
   private:
-    std::vector<Layer*> m_layerStack;
+    std::vector<Layer*> m_layerStack; // TODO: UniquePtr/ LayerManager should own all layers
     size_t m_layerInsertIndex = 0;
   };
 

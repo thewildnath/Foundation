@@ -20,12 +20,14 @@ namespace fnd {
     }
     m_logPtr = UniquePtr<Log>(Log::getSingletonPtr());
     m_layerManagerPtr = std::make_unique<LayerManager>();
+
+    // Create default ImGui layer
+    m_ImGuiLayer = new ImGuiLayer();
+    pushOverlay(m_ImGuiLayer);
   }
 
   void Application::run() {
     while (m_running) {
-      // Update layers in order
-
       // TODO: remove this testing code
       {
         static bool faze = false;
@@ -38,9 +40,18 @@ namespace fnd {
         glClear(GL_COLOR_BUFFER_BIT);
       }
 
+      // Update layers in order
       for (Layer* layer : *m_layerManagerPtr) {
         layer->onUpdate();
       }
+
+      // Update ImGui
+      m_ImGuiLayer->begin();
+      for (Layer* layer : *m_layerManagerPtr) {
+        layer->onImGui();
+      }
+      m_ImGuiLayer->end();
+
 
       m_window->onUpdate();
     }

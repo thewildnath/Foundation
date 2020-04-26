@@ -5,6 +5,7 @@
 #include "Foundation/Core/Log.h"
 #include "Foundation/Core/Window.h"
 #include "Foundation/Events/WindowEvents.h"
+#include "Foundation/ImGui/ImGuiLayer.h"
 #include "Foundation/Utils/Singleton.h"
 
 namespace fnd {
@@ -31,6 +32,9 @@ namespace fnd {
     UniquePtr<Window> m_window;
 
     bool m_running;
+
+    // Temporary default ImGui layer. TODO: allow layers to individual ImGui
+    ImGuiLayer* m_ImGuiLayer;
 
     // Systems
     UniquePtr<Log> m_logPtr;

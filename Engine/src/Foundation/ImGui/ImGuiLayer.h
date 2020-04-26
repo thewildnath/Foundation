@@ -9,13 +9,10 @@ namespace fnd {
     ImGuiLayer();
     ~ImGuiLayer() override;
 
-    virtual void onUpdate() override;
+    static void test();
 
     void begin();
     void end();
-
-  private:
-    float m_time;
   };
 
 }
