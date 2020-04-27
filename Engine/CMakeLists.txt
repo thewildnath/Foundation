@@ -62,6 +62,7 @@ if(FND_BUILD_SHARED_LIB)
   target_compile_definitions(${PROJECT_NAME} PUBLIC FND_BUILD_SHARED)
   # TODO: Move FND_API here and merge with IMGUI_API
   set(IMGUI_API "__declspec(dllexport)")
+  target_compile_definitions(${PROJECT_NAME} PUBLIC IMGUI_API=${IMGUI_API})
 endif()
 
 if(FND_BUILD_DEBUG)

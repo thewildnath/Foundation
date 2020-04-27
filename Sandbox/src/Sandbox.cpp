@@ -12,13 +12,13 @@ public:
 
   void onImGui() override {
     FND_DEBUG("Update ImGui");
-
-    // THIS WORKS:
-//    fnd::ImGuiLayer::test();
-
-    // THIS DOESN'T:
+    
     static bool show = true;
     ImGui::ShowDemoWindow(&show);
+
+    ImGui::Begin("Example");
+    ImGui::Text("-lorem ipsum-");
+    ImGui::End();
   }
 };
 

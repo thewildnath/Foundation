@@ -78,9 +78,4 @@ namespace fnd {
     }
   }
 
-  void ImGuiLayer::test() {
-    static bool show = true;
-    ImGui::ShowDemoWindow(&show);
-  }
-
 }

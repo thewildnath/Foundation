@@ -9,8 +9,6 @@ namespace fnd {
     ImGuiLayer();
     ~ImGuiLayer() override;
 
-    static void test();
-
     void begin();
     void end();
   };

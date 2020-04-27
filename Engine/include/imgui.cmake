@@ -17,7 +17,7 @@ set(IMGUI_SOURCES
   )
 
 # Define library
-add_library(${PROJECT_NAME} STATIC ${IMGUI_SOURCES})
+add_library(${PROJECT_NAME} SHARED ${IMGUI_SOURCES})
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC IMGUI_API=${IMGUI_API})
 
