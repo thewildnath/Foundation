@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Foundation/fndpch.h"
+#include "Foundation/Utils/flag_enums.h"
 
 namespace fnd {
 
@@ -20,17 +21,14 @@ namespace fnd {
     MouseButton = FND_BIT(4u),
     Window      = FND_BIT(5u)
   };
-
-  inline std::underlying_type_t<EventCategory> operator |(const EventCategory& a, const EventCategory& b) {
-    using T = std::underlying_type_t <EventCategory>;
-    return static_cast<T>(a) | static_cast<T>(b);
-  }
+  ENUM_OPERATOR(EventCategory, |)
+  ENUM_OPERATOR(EventCategory, &)
 
   #define EVENT_CLASS_TYPE(type) static EventType getStaticType() { return type; }\
                                  virtual EventType getEventType() const override { return getStaticType(); }\
                                  virtual const char* getName() const override { return #type; }
 
-  #define EVENT_CLASS_CATEGORY(category) virtual std::underlying_type_t<EventCategory> getCategoryFlags() const override { return static_cast<std::underlying_type_t<EventCategory>>(category); }
+  #define EVENT_CLASS_CATEGORY(category) virtual EventCategory getCategoryFlags() const override { return category; }
 
   class FND_API Event {
   public:
@@ -38,11 +36,11 @@ namespace fnd {
 
     virtual EventType getEventType() const = 0;
     virtual const char* getName() const = 0;
-    virtual uint32_t getCategoryFlags() const = 0;
+    virtual EventCategory getCategoryFlags() const = 0;
     virtual std::string toString() const { return getName(); }
 
     inline bool isInCategory(EventCategory category) {
-      return getCategoryFlags() & static_cast<unsigned int>(category);
+      return (getCategoryFlags() & category) != EventCategory::None;
     }
 
     inline std::ostream& operator <<(std::ostream& os) const {
