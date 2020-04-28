@@ -50,7 +50,6 @@ namespace fnd {
   }
 
   void ImGuiLayer::begin() {
-    FND_DEBUG("BEGIN IMGUI");
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
@@ -58,7 +57,6 @@ namespace fnd {
   }
 
   void ImGuiLayer::end() {
-    FND_DEBUG("END IMGUI");
     ImGuiIO& io = ImGui::GetIO();
     Application* app = Application::getSingletonPtr();
     io.DisplaySize = ImVec2(app->getWindow()->getWidth(), app->getWindow()->getHeight());

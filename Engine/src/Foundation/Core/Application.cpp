@@ -58,7 +58,11 @@ namespace fnd {
   }
 
   void Application::onEvent(Event& e) {
-    FND_DEBUG(e.toString());
+
+    // Temporary input test
+    if (e.isInCategory(EventCategory::Input)) {
+      FND_DEBUG("Input event: {0}", e.toString());
+    }
 
     EventDispatcher dispatcher(e);
     dispatcher.dispatch<WindowCloseEvent>(FND_BIND_EVENT_FN(Application::onWindowClose));

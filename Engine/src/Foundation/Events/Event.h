@@ -4,14 +4,14 @@
 
 namespace fnd {
 
-  enum class FND_API EventType {
+  enum class EventType {
     None,
     WindowClosed, WindowResized, WindowFocused, WindowLostFocus, WindowMoved,
     KeyPressed, KeyReleased, KeyTyped,
     MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
   };
 
-  enum class FND_API EventCategory : uint32_t {
+  enum class EventCategory : uint32_t {
     None = 0,
     Application = FND_BIT(0u),
     Input       = FND_BIT(1u),

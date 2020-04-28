@@ -7,12 +7,12 @@ public:
   ExampleLayer() : Layer("ExampleLayer") {};
 
   void onUpdate() override {
-    FND_INFO("Update from {0}", getName());
+    FND_TRACE("onUpdate from {0}", getName());
   };
 
   void onImGui() override {
-    FND_DEBUG("Update ImGui");
-    
+    FND_TRACE("onImGui from {0}", getName());
+
     static bool show = true;
     ImGui::ShowDemoWindow(&show);
 
