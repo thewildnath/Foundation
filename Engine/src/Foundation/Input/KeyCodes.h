@@ -139,7 +139,7 @@ namespace fnd {
   } Key;
 
   inline std::ostream& operator <<(std::ostream& os, KeyCode keyCode) {
-    os << static_cast<int32_t>(keyCode);
+    os << static_cast<std::underlying_type_t<KeyCode>>(keyCode);
     return os;
   }
 
