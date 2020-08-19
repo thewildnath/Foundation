@@ -3,14 +3,14 @@
 #include <spdlog/spdlog.h>
 
 #include "Foundation/Core.h"
-#include "Foundation/Utils/Singleton.h"
+#include "Foundation/Core/AbstractManager.h"
 
 namespace fnd {
 
-  class FND_API Log : public Singleton<Log> {
+  class FND_API LogManager : public AbstractManager<LogManager> {
   public:
-    Log();
-    ~Log();
+    LogManager();
+    ~LogManager();
 
     inline std::shared_ptr<spdlog::logger>& getEngineLogger() { return m_engineLogger; }
     inline std::shared_ptr<spdlog::logger>& getClientLogger() { return m_clientLogger; }
@@ -24,9 +24,9 @@ namespace fnd {
 
 // Log macros
 #ifdef FND_BUILD_ENGINE
-  #define FND_GET_LOGGER ::fnd::Log::getSingletonPtr()->getEngineLogger()
+  #define FND_GET_LOGGER ::fnd::LogManager::getSingletonPtr()->getEngineLogger()
 #else
-  #define FND_GET_LOGGER ::fnd::Log::getSingletonPtr()->getClientLogger()
+  #define FND_GET_LOGGER ::fnd::LogManager::getSingletonPtr()->getClientLogger()
 #endif
 
 #define FND_TRACE(...)      FND_GET_LOGGER->trace(__VA_ARGS__)

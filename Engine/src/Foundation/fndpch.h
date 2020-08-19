@@ -16,7 +16,7 @@
 #include <vector>
 
 #include "Core.h"
-#include "Foundation/Core/Log.h"
+#include "Foundation/Core/LogManager.h"
 
 #ifdef FND_PLATFORM_WINDOWS
   #include <Windows.h>

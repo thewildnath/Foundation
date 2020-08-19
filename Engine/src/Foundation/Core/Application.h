@@ -2,10 +2,11 @@
 
 #include "Foundation/fndpch.h"
 #include "Foundation/Core/LayerManager.h"
-#include "Foundation/Core/Log.h"
+#include "Foundation/Core/LogManager.h"
 #include "Foundation/Core/Window.h"
 #include "Foundation/Events/WindowEvents.h"
 #include "Foundation/ImGui/ImGuiLayer.h"
+#include "Foundation/Input/InputManager.h"
 #include "Foundation/Utils/Singleton.h"
 
 namespace fnd {
@@ -37,8 +38,9 @@ namespace fnd {
     ImGuiLayer* m_ImGuiLayer;
 
     // Systems
-    UniquePtr<Log> m_logPtr;
+    UniquePtr<LogManager> m_logPtr;
     UniquePtr<LayerManager> m_layerManagerPtr;
+    UniquePtr<InputManager> m_inputManagerPtr;
   };
 
 }

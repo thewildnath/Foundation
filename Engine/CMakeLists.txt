@@ -19,14 +19,15 @@ set(ENGINE_SOURCES
   src/Foundation/fndpch.cpp
   src/Foundation/fndpch.h
   src/Foundation/EntryPoint.h
+  src/Foundation/Core/AbstractManager.h
   src/Foundation/Core/Application.cpp
   src/Foundation/Core/Application.h
   src/Foundation/Core/Layer.cpp
   src/Foundation/Core/Layer.h
   src/Foundation/Core/LayerManager.cpp
   src/Foundation/Core/LayerManager.h
-  src/Foundation/Core/Log.cpp
-  src/Foundation/Core/Log.h
+  src/Foundation/Core/LogManager.cpp
+  src/Foundation/Core/LogManager.h
   src/Foundation/Core/Window.cpp
   src/Foundation/Core/Window.h
   src/Foundation/Events/Event.h
@@ -35,6 +36,8 @@ set(ENGINE_SOURCES
   src/Foundation/Events/WindowEvents.h
   src/Foundation/ImGui/ImGuiLayer.cpp
   src/Foundation/ImGui/ImGuiLayer.h
+  src/Foundation/Input/InputManager.cpp
+  src/Foundation/Input/InputManager.h
   src/Foundation/Input/KeyCodes.h
   src/Foundation/Input/MouseCodes.h
   src/Foundation/Utils/flag_enums.h
@@ -55,6 +58,10 @@ add_library(Foundation::Engine ALIAS ${PROJECT_NAME})
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Specify compile options
+# Surpress MSVC warning C4661
+target_compile_options(${PROJECT_NAME} PUBLIC "/wd4661")
 
 # Specify compile definitions
 target_compile_definitions(${PROJECT_NAME} PRIVATE FND_BUILD_ENGINE)

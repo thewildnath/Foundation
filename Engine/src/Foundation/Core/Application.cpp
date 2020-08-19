@@ -1,7 +1,5 @@
 #include "Application.h"
 
-#include <memory>
-
 #include <glad/glad.h>
 
 namespace fnd {
@@ -9,17 +7,21 @@ namespace fnd {
   template<> Application* Singleton<Application>::m_singleton = nullptr;
 
   Application::Application() {
+
+    // TODO: initialise Log first, design Windows and Input
+
     m_window = Window::create();
     m_window->setEventCallback(FND_BIND_EVENT_FN(Application::onEvent));
 
     m_running = true;
 
     // Initialise systems
-    if (!Log::getSingletonPtr()) {
-      new Log();
+    if (!LogManager::getSingletonPtr()) {
+      new LogManager();
     }
-    m_logPtr = UniquePtr<Log>(Log::getSingletonPtr());
+    m_logPtr = UniquePtr<LogManager>(LogManager::getSingletonPtr());
     m_layerManagerPtr = std::make_unique<LayerManager>();
+    m_inputManagerPtr = std::make_unique<InputManager>();
 
     // Create default ImGui layer
     m_ImGuiLayer = new ImGuiLayer();
@@ -35,7 +37,7 @@ namespace fnd {
         if (faze) {
           glClearColor(1, 0, 1, 1);
         } else {
-          glClearColor(0.9, 0.1, 0.9, 1);
+          glClearColor(0.8, 0.2, 0.8, 1);
         }
         glClear(GL_COLOR_BUFFER_BIT);
       }
@@ -58,10 +60,10 @@ namespace fnd {
   }
 
   void Application::onEvent(Event& e) {
-
     // Temporary input test
     if (e.isInCategory(EventCategory::Input)) {
-      FND_DEBUG("Input event: {0}", e.toString());
+      m_inputManagerPtr->onEvent(e);
+      return;
     }
 
     EventDispatcher dispatcher(e);

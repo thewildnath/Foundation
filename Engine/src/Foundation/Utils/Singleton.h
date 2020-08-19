@@ -2,11 +2,8 @@
 
 #include "Foundation/fndpch.h"
 
-// TODO: check for MSVC
-#pragma warning (push)
-#pragma warning ( disable: 4661)
-
 namespace fnd {
+
   template <typename T>
   class Singleton {
   public:
@@ -37,6 +34,3 @@ namespace fnd {
   };
 
 }
-
-// TODO: check for MSVC
-#pragma warning (pop)

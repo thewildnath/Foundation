@@ -109,7 +109,7 @@ namespace fnd {
     F25                 = 314,
 
     /* Keypad */
-      KP0                 = 320,
+    KP0                 = 320,
     KP1                 = 321,
     KP2                 = 322,
     KP3                 = 323,
@@ -137,6 +137,8 @@ namespace fnd {
     RightSuper          = 347,
     Menu                = 348
   } Key;
+
+  const size_t KEY_CODE_SIZE = 400;
 
   inline std::ostream& operator <<(std::ostream& os, KeyCode keyCode) {
     os << static_cast<std::underlying_type_t<KeyCode>>(keyCode);

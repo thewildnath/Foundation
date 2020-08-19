@@ -21,6 +21,8 @@ namespace fnd {
     ButtonMiddle           = Button2
   } Mouse;
 
+  const size_t MOUSE_CODE_SIZE = 10;
+
   inline std::ostream& operator <<(std::ostream& os, MouseCode mouseCode) {
     os << static_cast<std::underlying_type_t<MouseCode>>(mouseCode);
     return os;

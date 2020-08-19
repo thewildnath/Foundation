@@ -1,5 +1,7 @@
 #include "LayerManager.h"
 
+#include "Foundation/Utils/Singleton.h"
+
 namespace fnd {
 
   template<> LayerManager* Singleton<LayerManager>::m_singleton = nullptr;

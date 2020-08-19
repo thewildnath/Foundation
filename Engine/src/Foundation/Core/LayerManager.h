@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Foundation/fndpch.h"
+#include "Foundation/Core/AbstractManager.h"
 #include "Foundation/Core/Layer.h"
-#include "Foundation/Utils/Singleton.h"
 
 namespace fnd {
 
-  class FND_API LayerManager : public Singleton<LayerManager> {
+  class FND_API LayerManager : public AbstractManager<LayerManager> {
   public:
     LayerManager() = default;
     ~LayerManager();

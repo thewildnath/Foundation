@@ -1,12 +1,14 @@
-#include "Log.h"
+#include "LogManager.h"
 
 #include <spdlog/sinks/stdout_color_sinks.h>
 
+#include "Foundation/Utils/Singleton.h"
+
 namespace fnd {
 
-  template<> Log* Singleton<Log>::m_singleton = nullptr;
+  template<> LogManager* Singleton<LogManager>::m_singleton = nullptr;
 
-  Log::Log() {
+  LogManager::LogManager() {
     spdlog::set_pattern("%^[%T] %n: %v%$");
 
     m_engineLogger = spdlog::stdout_color_mt("FND");
@@ -16,7 +18,7 @@ namespace fnd {
     m_clientLogger->set_level(spdlog::level::trace);
   }
 
-  Log::~Log() {
+  LogManager::~LogManager() {
     spdlog::drop("FND");
     spdlog::drop("APP");
   }
