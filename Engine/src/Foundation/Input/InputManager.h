@@ -23,9 +23,15 @@ namespace fnd {
     bool getMouseButtonDown(MouseCode mouseCode) const;
     bool getMouseButtonUp(MouseCode mouseCode) const;
 
+    float getMouseX() const;
+    float getMouseY() const;
+
   private:
-    EnumArray<KeyCode, bool> key;
-    EnumArray<MouseCode, bool> mouseButton;
+    EnumArray<KeyCode, bool> key{};
+    EnumArray<MouseCode, bool> mouseButton{};
+
+    float mouseX = 0;
+    float mouseY = 0;
   };
 
   using Input = InputManager;

@@ -20,6 +20,21 @@ namespace fnd {
       key[e.getKeyCode()] = false;
       return true;
     });
+
+    dispatcher.dispatch<MouseButtonPressedEvent>([this](MouseButtonPressedEvent e) {
+      mouseButton[e.getMouseCode()] = true;
+      return true;
+    });
+    dispatcher.dispatch<MouseButtonReleasedEvent>([this](MouseButtonReleasedEvent e) {
+      mouseButton[e.getMouseCode()] = false;
+      return true;
+    });
+
+    dispatcher.dispatch<MouseMovedEvent>([this](MouseMovedEvent e) {
+      mouseX = e.getX();
+      mouseY = e.getY();
+      return true;
+    });
   }
 
   bool InputManager::getKey(KeyCode keyCode) const {
@@ -35,8 +50,7 @@ namespace fnd {
   }
 
   bool InputManager::getMouseButton(MouseCode mouseCode) const {
-    //return mouseButton[mouseCode];
-    return false;
+    return mouseButton[mouseCode];
   }
 
   bool InputManager::getMouseButtonDown(MouseCode mouseCode) const {
@@ -45,6 +59,14 @@ namespace fnd {
 
   bool InputManager::getMouseButtonUp(MouseCode mouseCode) const {
     return false;
+  }
+
+  float InputManager::getMouseX() const {
+    return mouseX;
+  }
+
+  float InputManager::getMouseY() const {
+    return mouseY;
   }
 
 }

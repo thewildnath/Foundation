@@ -10,7 +10,15 @@ public:
 //    FND_TRACE("onUpdate from {0}", getName());
 
     if (INPUT->getKey(FND_KEY_W)) {
-      FND_TRACE("YESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+      FND_TRACE("W is pressed");
+    }
+
+    if (INPUT->getMouseButton(FND_MOUSE_BUTTON_LEFT)) {
+      FND_TRACE("Click");
+    }
+
+    if (INPUT->getMouseX() < 100 && INPUT->getMouseY() < 100) {
+      FND_TRACE("Mouse is near top left");
     }
   };
 
