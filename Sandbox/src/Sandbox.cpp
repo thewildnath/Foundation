@@ -8,6 +8,10 @@ public:
 
   void onUpdate() override {
 //    FND_TRACE("onUpdate from {0}", getName());
+
+    if (INPUT->getKey(FND_KEY_W)) {
+      FND_TRACE("YESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+    }
   };
 
   void onImGui() override {

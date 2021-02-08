@@ -5,6 +5,7 @@
 #include "Foundation/Events/Event.h"
 #include "Foundation/Input/KeyCodes.h"
 #include "Foundation/Input/MouseCodes.h"
+#include "Foundation/Utils/EnumArray.h"
 
 namespace fnd {
 
@@ -23,10 +24,12 @@ namespace fnd {
     bool getMouseButtonUp(MouseCode mouseCode) const;
 
   private:
-    bool key[KEY_CODE_SIZE];
-    bool mouseButton[MOUSE_CODE_SIZE];
+    EnumArray<KeyCode, bool> key;
+    EnumArray<MouseCode, bool> mouseButton;
   };
 
   using Input = InputManager;
 
 }
+
+#define INPUT ::fnd::InputManager::getSingletonPtr()

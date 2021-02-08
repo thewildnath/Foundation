@@ -18,10 +18,12 @@ namespace fnd {
     ButtonLast             = Button7,
     ButtonLeft             = Button0,
     ButtonRight            = Button1,
-    ButtonMiddle           = Button2
+    ButtonMiddle           = Button2,
+
+    ENUM_SIZE
   } Mouse;
 
-  const size_t MOUSE_CODE_SIZE = 10;
+  const size_t MOUSE_CODE_SIZE = static_cast<std::underlying_type_t<MouseCode>>(MouseCode::ENUM_SIZE);;
 
   inline std::ostream& operator <<(std::ostream& os, MouseCode mouseCode) {
     os << static_cast<std::underlying_type_t<MouseCode>>(mouseCode);

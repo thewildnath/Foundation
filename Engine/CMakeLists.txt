@@ -40,6 +40,7 @@ set(ENGINE_SOURCES
   src/Foundation/Input/InputManager.h
   src/Foundation/Input/KeyCodes.h
   src/Foundation/Input/MouseCodes.h
+  src/Foundation/Utils/EnumArray.h
   src/Foundation/Utils/flag_enums.h
   src/Foundation/Utils/Singleton.h
   src/Platform/Windows/WindowsWindow.cpp

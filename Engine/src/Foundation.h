@@ -16,4 +16,9 @@
 #include "Foundation/Events/MouseEvent.h"
 #include "Foundation/Events/WindowEvents.h"
 
+#include "Foundation/Input/InputManager.h"
+#include "Foundation/Input/KeyCodes.h"
+#include "Foundation/Input/MouseCodes.h"
+
+
 #include "Foundation/ImGui/ImGuiLayer.h"

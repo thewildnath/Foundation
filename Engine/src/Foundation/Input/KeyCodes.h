@@ -135,10 +135,12 @@ namespace fnd {
     RightControl        = 345,
     RightAlt            = 346,
     RightSuper          = 347,
-    Menu                = 348
+    Menu                = 348,
+
+    ENUM_SIZE
   } Key;
 
-  const size_t KEY_CODE_SIZE = 400;
+  const size_t KEY_CODE_SIZE = static_cast<std::underlying_type_t<KeyCode>>(KeyCode::ENUM_SIZE);
 
   inline std::ostream& operator <<(std::ostream& os, KeyCode keyCode) {
     os << static_cast<std::underlying_type_t<KeyCode>>(keyCode);
