@@ -40,9 +40,13 @@ set(ENGINE_SOURCES
   src/Foundation/Input/InputManager.h
   src/Foundation/Input/KeyCodes.h
   src/Foundation/Input/MouseCodes.h
+  src/Foundation/Rendering/RenderingContext.cpp
+  src/Foundation/Rendering/RenderingContext.h
   src/Foundation/Utils/EnumArray.h
   src/Foundation/Utils/flag_enums.h
   src/Foundation/Utils/Singleton.h
+  src/Platform/OpenGL/OpenGLContext.cpp
+  src/Platform/OpenGL/OpenGLContext.h
   src/Platform/Windows/WindowsWindow.cpp
   src/Platform/Windows/WindowsWindow.h
   # Imgui docking branch is still in development. Will eventually implement these files in FND

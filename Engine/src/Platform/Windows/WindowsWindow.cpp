@@ -1,7 +1,5 @@
 #include "WindowsWindow.h"
 
-#include <glad/glad.h>
-
 #include "Foundation/Events/KeyEvent.h"
 #include "Foundation/Events/MouseEvent.h"
 #include "Foundation/Events/WindowEvents.h"
@@ -44,11 +42,8 @@ namespace fnd {
       nullptr, nullptr);
     ++s_glfwWindowCount;
 
-    glfwMakeContextCurrent(m_window);
-
-    // Initialise glad
-    int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-    FND_ASSERT(status, "Failed to initialise glad.")
+    m_context = RenderingContext::create(m_window);
+    m_context->init();
 
     // Set glfw callbacks
     glfwSetWindowUserPointer(m_window, &m_data);
@@ -148,8 +143,9 @@ namespace fnd {
   }
 
   void WindowsWindow::onUpdate() {
-    glfwSwapBuffers(m_window);
     glfwPollEvents();
+
+    m_context->swapBuffers();
   }
 
   void WindowsWindow::setVSync(int interval) {

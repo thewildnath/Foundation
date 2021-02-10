@@ -54,7 +54,6 @@ namespace fnd {
       }
       m_ImGuiLayer->end();
 
-
       m_window->onUpdate();
     }
   }

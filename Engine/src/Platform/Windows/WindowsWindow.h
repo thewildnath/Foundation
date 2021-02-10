@@ -4,6 +4,7 @@
 
 #include "Foundation/fndpch.h"
 #include "Foundation/Core/Window.h"
+#include "Foundation/Rendering/RenderingContext.h"
 
 namespace fnd {
 
@@ -30,6 +31,8 @@ namespace fnd {
 
   private:
     GLFWwindow* m_window{};
+
+    UniquePtr<RenderingContext> m_context;
 
     struct WindowData {
       std::string title;
