@@ -46,6 +46,8 @@ set(ENGINE_SOURCES
   src/Foundation/Rendering/RenderingManager.h
   src/Foundation/Rendering/RenderingContext.cpp
   src/Foundation/Rendering/RenderingContext.h
+  src/Foundation/Rendering/Shader.cpp
+  src/Foundation/Rendering/Shader.h
   src/Foundation/Utils/EnumArray.h
   src/Foundation/Utils/FlagEnums.h
   src/Foundation/Utils/Singleton.h

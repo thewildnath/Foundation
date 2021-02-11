@@ -7,9 +7,11 @@
 #include "Foundation/Events/WindowEvents.h"
 #include "Foundation/ImGui/ImGuiLayer.h"
 #include "Foundation/Input/InputManager.h"
-#include "Foundation/Rendering/Buffer.h"
 #include "Foundation/Rendering/RenderingManager.h"
 #include "Foundation/Utils/Singleton.h"
+
+#include "Foundation/Rendering/Buffer.h"
+#include "Foundation/Rendering/Shader.h"
 
 namespace fnd {
 
@@ -49,6 +51,7 @@ namespace fnd {
     unsigned int m_vertexArray;
     SharedPtr<VertexBuffer> m_vertexBuffer;
     SharedPtr<IndexBuffer> m_indexBuffer;
+    UniquePtr<Shader> m_shaderPtr;
   };
 
 }

@@ -58,6 +58,35 @@ namespace fnd {
       uint32_t indices[3] = {0, 1, 2};
       m_indexBuffer = IndexBuffer::create(indices, sizeof(indices) / sizeof(uint32_t));
       m_indexBuffer->bind();
+
+      std::string shaderVertexSrc = R"(
+        #version 330 core
+
+        layout(location = 0) in vec3 a_Position;
+
+        out vec3 v_Position;
+
+        void main() {
+          v_Position = a_Position;
+          gl_Position = vec4(a_Position, 1.0f);
+        }
+      )";
+
+      std::string shaderFragmentSrc = R"(
+        #version 330 core
+
+        layout(location = 0) out vec4 color;
+
+        in vec3 v_Position;
+
+        void main() {
+          // color = vec4(0.8f, 0.2f, 0.2f, 1.0f);
+          color = vec4(v_Position * 0.5f + 0.5f, 1.0f);
+        }
+      )";
+
+      m_shaderPtr = makeUnique<Shader>(shaderVertexSrc, shaderFragmentSrc);
+      m_shaderPtr->bind();
     }
   }
 
