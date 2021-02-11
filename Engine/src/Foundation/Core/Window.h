@@ -1,6 +1,9 @@
 #pragma once
 
-#include "Foundation/fndpch.h"
+#include <functional>
+#include <string>
+
+#include "Foundation/Core.h"
 #include "Foundation/Events/Event.h"
 
 namespace fnd {
@@ -35,7 +38,7 @@ namespace fnd {
 
     virtual void* getNativeWindow() const = 0;
 
-    static std::unique_ptr<Window> create(const WindowProps& props = WindowProps());
+    static UniquePtr<Window> create(const WindowProps& props = WindowProps());
   };
 
 }

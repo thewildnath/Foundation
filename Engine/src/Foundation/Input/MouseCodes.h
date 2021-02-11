@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Foundation/fndpch.h"
+#include <iosfwd>
+#include <type_traits>
 
 namespace fnd {
 

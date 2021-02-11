@@ -2,7 +2,6 @@
 
 #include <GLFW/glfw3.h>
 
-#include "Foundation/fndpch.h"
 #include "Foundation/Rendering/RenderingContext.h"
 
 namespace fnd {

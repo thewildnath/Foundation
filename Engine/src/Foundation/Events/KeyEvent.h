@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Foundation/fndpch.h"
+#include <sstream>
+#include <string>
+
 #include "Foundation/Events/Event.h"
 #include "Foundation/Input/KeyCodes.h"
 

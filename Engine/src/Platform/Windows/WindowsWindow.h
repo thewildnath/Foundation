@@ -32,7 +32,7 @@ namespace fnd {
   private:
     GLFWwindow* m_window{};
 
-    UniquePtr<RenderingContext> m_context;
+    UniquePtr<RenderingContext> m_renderingContext;
 
     struct WindowData {
       std::string title;

@@ -2,10 +2,12 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <iosfwd>
 #include <iostream>
 #include <functional>
 #include <memory>
 #include <sstream>
+#include <type_traits>
 #include <utility>
 
 #include <map>

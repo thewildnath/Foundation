@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Foundation/fndpch.h"
+#include "Foundation/Core.h"
 #include "Foundation/Core/LayerManager.h"
 #include "Foundation/Core/LogManager.h"
 #include "Foundation/Core/Window.h"
@@ -34,13 +34,18 @@ namespace fnd {
 
     bool m_running;
 
-    // Temporary default ImGui layer. TODO: allow layers to individual ImGui
+    // Temporary default ImGui layer. TODO: allow layers to individually use ImGui
     ImGuiLayer* m_ImGuiLayer;
 
     // Systems
     UniquePtr<LogManager> m_logPtr;
     UniquePtr<LayerManager> m_layerManagerPtr;
     UniquePtr<InputManager> m_inputManagerPtr;
+
+    // temporary
+    unsigned int m_vertexArray;
+    unsigned int m_vertexBuffer;
+    unsigned int m_indexBuffer;
   };
 
 }

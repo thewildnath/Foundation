@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <utility>
 
 // Find current platform
 #ifdef _WIN32
@@ -54,7 +55,7 @@
 
 // Other useful macros
 #define FND_BIT(x) (1u << x)
-#define FND_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+#define FND_BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
 
 namespace fnd {
   template<typename T>

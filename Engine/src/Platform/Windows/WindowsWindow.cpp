@@ -42,8 +42,8 @@ namespace fnd {
       nullptr, nullptr);
     ++s_glfwWindowCount;
 
-    m_context = RenderingContext::create(m_window);
-    m_context->init();
+    m_renderingContext = RenderingContext::create(m_window);
+    m_renderingContext->init();
 
     // Set glfw callbacks
     glfwSetWindowUserPointer(m_window, &m_data);
@@ -145,7 +145,7 @@ namespace fnd {
   void WindowsWindow::onUpdate() {
     glfwPollEvents();
 
-    m_context->swapBuffers();
+    m_renderingContext->swapBuffers();
   }
 
   void WindowsWindow::setVSync(int interval) {

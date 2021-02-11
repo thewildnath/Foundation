@@ -36,6 +36,4 @@ namespace fnd {
 #define FND_ERROR(...)      FND_GET_LOGGER->error(__VA_ARGS__)
 #define FND_CRITICAL(...)   FND_GET_LOGGER->critical(__VA_ARGS__)
 
-
-
 // TODO: strip log defines from distribution builds

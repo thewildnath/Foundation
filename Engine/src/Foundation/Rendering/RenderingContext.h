@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Foundation/fndpch.h"
+#include "Foundation/Core.h"
 
 namespace fnd {
 

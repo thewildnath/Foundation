@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Foundation/fndpch.h"
+#include <string>
+
 #include "Foundation/Events/Event.h"
 
 namespace fnd {

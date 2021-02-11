@@ -1,4 +1,7 @@
+#include "Foundation/fndpch.h"
 #include "Layer.h"
+
+#include <string>
 
 namespace fnd {
 

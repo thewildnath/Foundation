@@ -1,3 +1,4 @@
+#include "Foundation/fndpch.h"
 #include "LogManager.h"
 
 #include <spdlog/sinks/stdout_color_sinks.h>

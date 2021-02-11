@@ -1,45 +1,82 @@
+#include "Foundation/fndpch.h"
 #include "Application.h"
 
 #include <glad/glad.h>
+
+#include "Foundation/Core.h"
+#include "Foundation/Core/LayerManager.h"
+#include "Foundation/Core/LogManager.h"
+#include "Foundation/Core/Window.h"
+#include "Foundation/Events/WindowEvents.h"
+#include "Foundation/ImGui/ImGuiLayer.h"
+#include "Foundation/Input/InputManager.h"
+#include "Foundation/Utils/Singleton.h"
 
 namespace fnd {
 
   template<> Application* Singleton<Application>::m_singleton = nullptr;
 
   Application::Application() {
-
-    // TODO: initialise Log first, design Windows and Input
-
-    m_window = Window::create();
-    m_window->setEventCallback(FND_BIND_EVENT_FN(Application::onEvent));
-
-    m_running = true;
-
-    // Initialise systems
+    // Initialise log manager
     if (!LogManager::getSingletonPtr()) {
       new LogManager();
     }
+
+    // Create window
+    m_window = Window::create();
+    m_window->setEventCallback(FND_BIND_EVENT_FN(Application::onEvent));
+
+    // Initialise other systems
     m_logPtr = UniquePtr<LogManager>(LogManager::getSingletonPtr());
-    m_layerManagerPtr = std::make_unique<LayerManager>();
-    m_inputManagerPtr = std::make_unique<InputManager>();
+    m_layerManagerPtr = makeUnique<LayerManager>();
+    m_inputManagerPtr = makeUnique<InputManager>();
 
     // Create default ImGui layer
     m_ImGuiLayer = new ImGuiLayer();
     pushOverlay(m_ImGuiLayer);
+
+    m_running = true;
+
+    // testing
+    glGenVertexArrays(1, &m_vertexArray);
+    glBindVertexArray(m_vertexArray);
+
+    glGenBuffers(1, &m_vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
+
+    float vertices[3 * 3] = {
+      -0.5f, -0.5f, 0.0f,
+      0.5f , -0.5f, 0.0f,
+      0.0f , 0.5f , 0.0f,
+    };
+
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+
+    glGenBuffers(1, &m_indexBuffer);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBuffer);
+
+    unsigned int indices[3] = {0, 1, 2};
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
   }
 
   void Application::run() {
     while (m_running) {
       // TODO: remove this testing code
       {
-        static bool faze = false;
-        faze = !faze;
-        if (faze) {
-          glClearColor(1, 0, 1, 1);
+        static int frame = 0;
+        ++frame;
+        if ((frame / 50) % 2) {
+          glClearColor(0.14, 0.14, 0.14, 1);
         } else {
-          glClearColor(0.8, 0.2, 0.8, 1);
+          glClearColor(0.15, 0.15, 0.15, 1);
         }
         glClear(GL_COLOR_BUFFER_BIT);
+
+        glBindVertexArray(m_vertexArray);
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
       }
 
       // Update layers in order

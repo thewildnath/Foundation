@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Foundation/fndpch.h"
+#include <vector>
+
+#include "Foundation/Core.h"
 #include "Foundation/Core/AbstractManager.h"
 #include "Foundation/Core/Layer.h"
 

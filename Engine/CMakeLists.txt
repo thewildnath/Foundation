@@ -43,7 +43,7 @@ set(ENGINE_SOURCES
   src/Foundation/Rendering/RenderingContext.cpp
   src/Foundation/Rendering/RenderingContext.h
   src/Foundation/Utils/EnumArray.h
-  src/Foundation/Utils/flag_enums.h
+  src/Foundation/Utils/FlagEnums.h
   src/Foundation/Utils/Singleton.h
   src/Platform/OpenGL/OpenGLContext.cpp
   src/Platform/OpenGL/OpenGLContext.h

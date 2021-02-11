@@ -1,3 +1,4 @@
+#include "Foundation/fndpch.h"
 #include "InputManager.h"
 
 #include "Foundation/Events/KeyEvent.h"
@@ -9,8 +10,6 @@ namespace fnd {
   template<> InputManager* Singleton<InputManager>::m_singleton = nullptr;
 
   void InputManager::onEvent(Event& e) {
-    // FND_DEBUG("Input event: {0}", e.toString());
-
     EventDispatcher dispatcher(e);
     dispatcher.dispatch<KeyPressedEvent>([this](KeyPressedEvent e) {
       key[e.getKeyCode()] = true;

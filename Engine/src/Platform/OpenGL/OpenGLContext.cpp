@@ -1,6 +1,11 @@
+#include "Foundation/fndpch.h"
 #include "OpenGLContext.h"
 
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+#include "Foundation/Core.h"
+#include "Foundation/Core/LogManager.h"
 
 namespace fnd {
 

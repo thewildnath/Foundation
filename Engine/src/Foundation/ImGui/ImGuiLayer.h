@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Foundation/Core.h"
 #include "Foundation/Core/Layer.h"
 
 namespace fnd {

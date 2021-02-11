@@ -1,5 +1,7 @@
+#include "Foundation/fndpch.h"
 #include "LayerManager.h"
 
+#include "Foundation/Core/LogManager.h"
 #include "Foundation/Utils/Singleton.h"
 
 namespace fnd {

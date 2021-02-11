@@ -1,7 +1,9 @@
 #pragma once
 
-#include "Foundation/fndpch.h"
-#include "Foundation/Utils/flag_enums.h"
+#include <string>
+
+#include "Foundation/Core.h"
+#include "Foundation/Utils/FlagEnums.h"
 
 namespace fnd {
 
