@@ -40,11 +40,17 @@ set(ENGINE_SOURCES
   src/Foundation/Input/InputManager.h
   src/Foundation/Input/KeyCodes.h
   src/Foundation/Input/MouseCodes.h
+  src/Foundation/Rendering/Buffer.cpp
+  src/Foundation/Rendering/Buffer.h
+  src/Foundation/Rendering/RenderingManager.cpp
+  src/Foundation/Rendering/RenderingManager.h
   src/Foundation/Rendering/RenderingContext.cpp
   src/Foundation/Rendering/RenderingContext.h
   src/Foundation/Utils/EnumArray.h
   src/Foundation/Utils/FlagEnums.h
   src/Foundation/Utils/Singleton.h
+  src/Platform/OpenGL/OpenGLBuffer.cpp
+  src/Platform/OpenGL/OpenGLBuffer.h
   src/Platform/OpenGL/OpenGLContext.cpp
   src/Platform/OpenGL/OpenGLContext.h
   src/Platform/Windows/WindowsWindow.cpp

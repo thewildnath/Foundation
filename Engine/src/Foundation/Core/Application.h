@@ -7,6 +7,8 @@
 #include "Foundation/Events/WindowEvents.h"
 #include "Foundation/ImGui/ImGuiLayer.h"
 #include "Foundation/Input/InputManager.h"
+#include "Foundation/Rendering/Buffer.h"
+#include "Foundation/Rendering/RenderingManager.h"
 #include "Foundation/Utils/Singleton.h"
 
 namespace fnd {
@@ -39,13 +41,14 @@ namespace fnd {
 
     // Systems
     UniquePtr<LogManager> m_logPtr;
-    UniquePtr<LayerManager> m_layerManagerPtr;
     UniquePtr<InputManager> m_inputManagerPtr;
+    UniquePtr<LayerManager> m_layerManagerPtr;
+    UniquePtr<RenderingManager> m_renderingManagerPtr;
 
     // temporary
     unsigned int m_vertexArray;
-    unsigned int m_vertexBuffer;
-    unsigned int m_indexBuffer;
+    SharedPtr<VertexBuffer> m_vertexBuffer;
+    SharedPtr<IndexBuffer> m_indexBuffer;
   };
 
 }
