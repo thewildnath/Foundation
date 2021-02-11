@@ -14,7 +14,7 @@
 
 namespace fnd {
 
-  template<> Application* Singleton<Application>::m_singleton = nullptr;
+  template<> Application* Singleton<Application>::s_singleton = nullptr;
 
   Application::Application() {
     // Initialise log manager

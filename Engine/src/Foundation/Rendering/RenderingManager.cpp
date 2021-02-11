@@ -3,7 +3,7 @@
 
 namespace fnd {
 
-  template<> RenderingManager* Singleton<RenderingManager>::m_singleton = nullptr;
+  template<> RenderingManager* Singleton<RenderingManager>::s_singleton = nullptr;
 
   RenderingManager::RenderingManager() {
     m_API = RendererAPI::OpenGL;

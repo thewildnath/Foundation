@@ -7,7 +7,7 @@
 
 namespace fnd {
 
-  template<> InputManager* Singleton<InputManager>::m_singleton = nullptr;
+  template<> InputManager* Singleton<InputManager>::s_singleton = nullptr;
 
   void InputManager::onEvent(Event& e) {
     EventDispatcher dispatcher(e);

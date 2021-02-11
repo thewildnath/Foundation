@@ -6,7 +6,7 @@
 
 namespace fnd {
 
-  template<> LayerManager* Singleton<LayerManager>::m_singleton = nullptr;
+  template<> LayerManager* Singleton<LayerManager>::s_singleton = nullptr;
 
   LayerManager::~LayerManager() {
     for (Layer* layer : m_layerStack) {

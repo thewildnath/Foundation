@@ -7,7 +7,7 @@
 
 namespace fnd {
 
-  template<> LogManager* Singleton<LogManager>::m_singleton = nullptr;
+  template<> LogManager* Singleton<LogManager>::s_singleton = nullptr;
 
   LogManager::LogManager() {
     spdlog::set_pattern("%^[%T] %n: %v%$");
