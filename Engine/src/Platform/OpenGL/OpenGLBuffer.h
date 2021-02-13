@@ -7,7 +7,7 @@ namespace fnd {
 
   class OpenGLVertexBuffer : public VertexBuffer {
   public:
-    OpenGLVertexBuffer(float* vertices, size_t size);
+    OpenGLVertexBuffer(const float* vertices, size_t size);
     ~OpenGLVertexBuffer() override;
 
     void bind() const override;
@@ -23,7 +23,7 @@ namespace fnd {
 
   class OpenGLIndexBuffer : public IndexBuffer {
   public:
-    OpenGLIndexBuffer(uint32_t* indices, size_t count);
+    OpenGLIndexBuffer(const uint32_t* indices, size_t count);
     ~OpenGLIndexBuffer() override;
 
     void bind() const override;

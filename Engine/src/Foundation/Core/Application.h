@@ -12,6 +12,7 @@
 
 #include "Foundation/Rendering/Buffer.h"
 #include "Foundation/Rendering/Shader.h"
+#include "Foundation/Rendering/VertexArray.h"
 
 namespace fnd {
 
@@ -47,11 +48,9 @@ namespace fnd {
     UniquePtr<LayerManager> m_layerManagerPtr;
     UniquePtr<RenderingManager> m_renderingManagerPtr;
 
-    // temporary
-    unsigned int m_vertexArray;
-    SharedPtr<VertexBuffer> m_vertexBuffer;
-    SharedPtr<IndexBuffer> m_indexBuffer;
-    UniquePtr<Shader> m_shaderPtr;
+    // TODO: temporary testing
+    std::vector<SharedPtr<VertexArray>> m_vertexArrays;
+    UniquePtr<Shader> m_shader;
   };
 
 }

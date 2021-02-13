@@ -18,23 +18,20 @@ namespace fnd {
   template<> Application* Singleton<Application>::s_singleton = nullptr;
 
   // TODO: temporary testing
-  static GLenum shaderDataTypeToGLBaseType(ShaderDataType type) {
-    switch (type) {
-      case ShaderDataType::Bool:   return GL_BOOL;
-      case ShaderDataType::Int:    return GL_INT;
-      case ShaderDataType::Int2:   return GL_INT;
-      case ShaderDataType::Int3:   return GL_INT;
-      case ShaderDataType::Int4:   return GL_INT;
-      case ShaderDataType::Float:  return GL_FLOAT;
-      case ShaderDataType::Float2: return GL_FLOAT;
-      case ShaderDataType::Float3: return GL_FLOAT;
-      case ShaderDataType::Float4: return GL_FLOAT;
-      case ShaderDataType::Mat3:   return GL_FLOAT;
-      case ShaderDataType::Mat4:   return GL_FLOAT;
-    }
+  static SharedPtr<VertexArray> createVertexArrayFromData(
+      const float* vertices, size_t verticesSize,
+      const uint32_t* indices, size_t indicesCount,
+      const BufferLayout& layout) {
+    auto vertexArray = VertexArray::create();
 
-    FND_ASSERT(false, "Unknown ShaderDataType");
-    return 0;
+    auto vertexBuffer = VertexBuffer::create(vertices, verticesSize);
+    vertexBuffer->setLayout(layout);
+    vertexArray->addVertexBuffer(vertexBuffer);
+
+    auto indexBuffer = IndexBuffer::create(indices, indicesCount);
+    vertexArray->setIndexBuffer(indexBuffer);
+
+    return vertexArray;
   }
 
   Application::Application() {
@@ -61,40 +58,35 @@ namespace fnd {
 
     // testing
     {
-      glGenVertexArrays(1, &m_vertexArray);
-      glBindVertexArray(m_vertexArray);
-
       BufferLayout layout = {
         {ShaderDataType::Float3, "a_Position"},
         {ShaderDataType::Float4, "a_Color"}
       };
 
-      float vertices[3 * (3 + 4)] = {
+      float squareVertices[4 * (3 + 4)] = {
+        -0.75f, -0.75f, 0.0f, 0.2f, 0.2f, 0.8f, 1.0f,
+        -0.75f, 0.75f, 0.0f, 0.3f, 0.3f, 0.5f, 1.0f,
+        0.75f, 0.75f, 0.0f, 0.9f, 0.9f, 0.9f, 1.0f,
+        0.75f, -0.75f, 0.0f, 0.3f, 0.3f, 0.5f, 1.0f
+      };
+      uint32_t squareIndices[6] = {0, 1, 2, 0, 2, 3};
+
+      float triangleVertices[3 * (3 + 4)] = {
         -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.2f, 1.0f,
         0.5f, -0.5f, 0.0f, 0.2f, 0.8f, 0.2f, 1.0f,
         0.0f, 0.5f, 0.0f, 0.2f, 0.2f, 0.8f, 1.0f,
       };
+      uint32_t triangleIndices[3] = {0, 1, 2};
 
-      m_vertexBuffer = VertexBuffer::create(vertices, sizeof(vertices));
-      m_vertexBuffer->setLayout(layout);
-      m_vertexBuffer->bind();
+      m_vertexArrays.push_back(createVertexArrayFromData(
+        squareVertices, sizeof(squareVertices),
+        squareIndices, sizeof(squareIndices) / sizeof(uint32_t),
+        layout));
 
-      size_t index = 0;
-      for (const auto& element : m_vertexBuffer->getLayout()) {
-        glEnableVertexAttribArray(index);
-        glVertexAttribPointer(index,
-          element.getComponentCount(),
-          shaderDataTypeToGLBaseType(element.type),
-          element.normalised ? GL_TRUE : GL_FALSE,
-          layout.getStride(),
-          (const void*)element.offset
-        );
-        ++index;
-      }
-
-      uint32_t indices[3] = {0, 1, 2};
-      m_indexBuffer = IndexBuffer::create(indices, sizeof(indices) / sizeof(uint32_t));
-      m_indexBuffer->bind();
+      m_vertexArrays.push_back(createVertexArrayFromData(
+        triangleVertices, sizeof(triangleVertices),
+        triangleIndices, sizeof(triangleIndices) / sizeof(uint32_t),
+        layout));
 
       std::string shaderVertexSrc = R"(
         #version 330 core
@@ -127,8 +119,8 @@ namespace fnd {
         }
       )";
 
-      m_shaderPtr = makeUnique<Shader>(shaderVertexSrc, shaderFragmentSrc);
-      m_shaderPtr->bind();
+      m_shader = makeUnique<Shader>(shaderVertexSrc, shaderFragmentSrc);
+      m_shader->bind();
     }
   }
 
@@ -145,8 +137,12 @@ namespace fnd {
         }
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glBindVertexArray(m_vertexArray);
-        glDrawElements(GL_TRIANGLES, m_indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
+        m_shader->bind();
+
+        for (const auto& vertexArray : m_vertexArrays) {
+          vertexArray->bind();
+          glDrawElements(GL_TRIANGLES, vertexArray->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
+        }
       }
 
       // Update layers in order

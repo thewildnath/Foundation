@@ -96,7 +96,7 @@ namespace fnd {
     virtual void setLayout(const BufferLayout& layout) = 0;
     virtual const BufferLayout& getLayout() const = 0;
 
-    static SharedPtr<VertexBuffer> create(float* vertices, size_t size);
+    static SharedPtr<VertexBuffer> create(const float* vertices, size_t size);
   };
 
   class IndexBuffer {
@@ -108,7 +108,7 @@ namespace fnd {
 
     virtual size_t getCount() const = 0;
 
-    static SharedPtr<IndexBuffer> create(uint32_t* indices, size_t count);
+    static SharedPtr<IndexBuffer> create(const uint32_t* indices, size_t count);
   };
 
 }

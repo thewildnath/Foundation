@@ -48,6 +48,8 @@ set(ENGINE_SOURCES
   src/Foundation/Rendering/RenderingContext.h
   src/Foundation/Rendering/Shader.cpp
   src/Foundation/Rendering/Shader.h
+  src/Foundation/Rendering/VertexArray.cpp
+  src/Foundation/Rendering/VertexArray.h
   src/Foundation/Utils/EnumArray.h
   src/Foundation/Utils/FlagEnums.h
   src/Foundation/Utils/Singleton.h
@@ -55,6 +57,8 @@ set(ENGINE_SOURCES
   src/Platform/OpenGL/OpenGLBuffer.h
   src/Platform/OpenGL/OpenGLContext.cpp
   src/Platform/OpenGL/OpenGLContext.h
+  src/Platform/OpenGL/OpenGLVertexArray.cpp
+  src/Platform/OpenGL/OpenGLVertexArray.h
   src/Platform/Windows/WindowsWindow.cpp
   src/Platform/Windows/WindowsWindow.h
   # Imgui docking branch is still in development. Will eventually implement these files in FND
