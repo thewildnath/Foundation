@@ -1,6 +1,7 @@
 #include "Foundation/fndpch.h"
 #include "Application.h"
 
+// TODO: temporary testing
 #include <glad/glad.h>
 
 #include "Foundation/Core.h"
@@ -15,6 +16,26 @@
 namespace fnd {
 
   template<> Application* Singleton<Application>::s_singleton = nullptr;
+
+  // TODO: temporary testing
+  static GLenum shaderDataTypeToGLBaseType(ShaderDataType type) {
+    switch (type) {
+      case ShaderDataType::Bool:   return GL_BOOL;
+      case ShaderDataType::Int:    return GL_INT;
+      case ShaderDataType::Int2:   return GL_INT;
+      case ShaderDataType::Int3:   return GL_INT;
+      case ShaderDataType::Int4:   return GL_INT;
+      case ShaderDataType::Float:  return GL_FLOAT;
+      case ShaderDataType::Float2: return GL_FLOAT;
+      case ShaderDataType::Float3: return GL_FLOAT;
+      case ShaderDataType::Float4: return GL_FLOAT;
+      case ShaderDataType::Mat3:   return GL_FLOAT;
+      case ShaderDataType::Mat4:   return GL_FLOAT;
+    }
+
+    FND_ASSERT(false, "Unknown ShaderDataType");
+    return 0;
+  }
 
   Application::Application() {
     // Initialise log manager
@@ -43,17 +64,33 @@ namespace fnd {
       glGenVertexArrays(1, &m_vertexArray);
       glBindVertexArray(m_vertexArray);
 
-      float vertices[3 * 3] = {
-        -0.5f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        0.0f, 0.5f, 0.0f,
+      BufferLayout layout = {
+        {ShaderDataType::Float3, "a_Position"},
+        {ShaderDataType::Float4, "a_Color"}
+      };
+
+      float vertices[3 * (3 + 4)] = {
+        -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.2f, 1.0f,
+        0.5f, -0.5f, 0.0f, 0.2f, 0.8f, 0.2f, 1.0f,
+        0.0f, 0.5f, 0.0f, 0.2f, 0.2f, 0.8f, 1.0f,
       };
 
       m_vertexBuffer = VertexBuffer::create(vertices, sizeof(vertices));
+      m_vertexBuffer->setLayout(layout);
       m_vertexBuffer->bind();
 
-      glEnableVertexAttribArray(0);
-      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+      size_t index = 0;
+      for (const auto& element : m_vertexBuffer->getLayout()) {
+        glEnableVertexAttribArray(index);
+        glVertexAttribPointer(index,
+          element.getComponentCount(),
+          shaderDataTypeToGLBaseType(element.type),
+          element.normalised ? GL_TRUE : GL_FALSE,
+          layout.getStride(),
+          (const void*)element.offset
+        );
+        ++index;
+      }
 
       uint32_t indices[3] = {0, 1, 2};
       m_indexBuffer = IndexBuffer::create(indices, sizeof(indices) / sizeof(uint32_t));
@@ -63,11 +100,14 @@ namespace fnd {
         #version 330 core
 
         layout(location = 0) in vec3 a_Position;
+        layout(location = 1) in vec4 a_Color;
 
         out vec3 v_Position;
+        out vec4 v_Color;
 
         void main() {
           v_Position = a_Position;
+          v_Color = a_Color;
           gl_Position = vec4(a_Position, 1.0f);
         }
       )";
@@ -78,10 +118,12 @@ namespace fnd {
         layout(location = 0) out vec4 color;
 
         in vec3 v_Position;
+        in vec4 v_Color;
 
         void main() {
           // color = vec4(0.8f, 0.2f, 0.2f, 1.0f);
-          color = vec4(v_Position * 0.5f + 0.5f, 1.0f);
+          // color = vec4(v_Position * 0.5f + 0.5f, 1.0f);
+          color = v_Color;
         }
       )";
 

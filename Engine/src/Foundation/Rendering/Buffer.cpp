@@ -9,6 +9,17 @@
 
 namespace fnd {
 
+  BufferLayout::BufferLayout(const std::initializer_list<BufferElement>& elements)
+    : m_elements(elements) {
+    // Calculate offsets and stride
+    size_t offset = 0;
+    for (auto& element : m_elements) {
+      element.offset = offset;
+      offset += element.size;
+    }
+    m_stride = offset;
+  }
+
   SharedPtr<VertexBuffer> VertexBuffer::create(float* vertices, size_t size) {
     switch(RenderingManager::getSingletonPtr()->getAPI()) {
       case RendererAPI::None: {

@@ -13,8 +13,12 @@ namespace fnd {
     void bind() const override;
     void unbind() const override;
 
+    void inline setLayout(const BufferLayout& layout) override { m_layout = layout; };
+    const inline BufferLayout& getLayout() const override { return m_layout; };
+
   private:
     uint32_t m_rendererID;
+    BufferLayout m_layout;
   };
 
   class OpenGLIndexBuffer : public IndexBuffer {
