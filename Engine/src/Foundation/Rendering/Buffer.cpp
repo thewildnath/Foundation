@@ -21,7 +21,7 @@ namespace fnd {
     m_stride = offset;
   }
 
-  SharedPtr<VertexBuffer> VertexBuffer::create(const float* vertices, size_t size) {
+  SharedPtr<VertexBuffer> VertexBuffer::create(float* vertices, size_t size) {
     switch(RenderingManager::getSingletonPtr()->getAPI()) {
       case RendererAPI::None: FND_ASSERT(false, "RenderAPI::None is currently not supported") return nullptr;
       #ifdef FND_PLATFORM_WINDOWS
@@ -33,7 +33,7 @@ namespace fnd {
     return nullptr;
   }
 
-  SharedPtr<IndexBuffer> IndexBuffer::create(const uint32_t* indices, size_t count) {
+  SharedPtr<IndexBuffer> IndexBuffer::create(uint32_t* indices, size_t count) {
     switch(RenderingManager::getSingletonPtr()->getAPI()) {
       case RendererAPI::None: FND_ASSERT(false, "RenderAPI::None is currently not supported"); return nullptr;
       #ifdef FND_PLATFORM_WINDOWS

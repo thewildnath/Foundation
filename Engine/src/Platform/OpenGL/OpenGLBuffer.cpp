@@ -7,7 +7,7 @@ namespace fnd {
 
   // OpenGLVertexBuffer
 
-  OpenGLVertexBuffer::OpenGLVertexBuffer(const float* vertices, size_t size) {
+  OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, size_t size) {
     glCreateBuffers(1, &m_rendererID);
     bind();
     glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
@@ -29,7 +29,7 @@ namespace fnd {
 
   // OpenGLIndexBuffer
 
-  OpenGLIndexBuffer::OpenGLIndexBuffer(const uint32_t* indices, size_t count)
+  OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, size_t count)
     : m_Count(count) {
     glCreateBuffers(1, &m_rendererID);
     bind();

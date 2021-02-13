@@ -19,8 +19,8 @@ namespace fnd {
 
   // TODO: temporary testing
   static SharedPtr<VertexArray> createVertexArrayFromData(
-      const float* vertices, size_t verticesSize,
-      const uint32_t* indices, size_t indicesCount,
+      float* vertices, size_t verticesSize,
+      uint32_t* indices, size_t indicesCount,
       const BufferLayout& layout) {
     auto vertexArray = VertexArray::create();
 
